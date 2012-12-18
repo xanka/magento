@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <checkout_onepage_index>
+        <reference name="checkout.onepage.shipping_method.available">
+            <action method="setTemplate" ifconfig="carriers/dropshipping/active">
+                <template>sm/vendors/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_index>
+    
+    <checkout_onepage_shippingmethod>
+        <reference name="root">
+            <action method="setTemplate" ifconfig="carriers/dropshipping/active">
+                <template>sm/vendors/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_shippingmethod>
+    
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <action method="setCartTemplate" ifconfig="carriers/dropshipping/active">
+                <value>sm/vendors/checkout/cart.phtml</value>
+            </action>
+            <action method="chooseTemplate" ifconfig="carriers/dropshipping/active" />
+        </reference>
+        <reference name="checkout.cart.shipping">
+            <action method="setTemplate" ifconfig="carriers/dropshipping/active">
+                <template>sm/vendors/checkout/cart/shipping.phtml</template>
+            </action>
+        </reference>
+    </checkout_cart_index>
+    
+    
+    
+    <onestepcheckout_index_index>
+        <reference name="choose-shipping-method">
+            <action method="setTemplate" ifconfig="carriers/dropshipping/active">
+                <template>sm/vendors/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+        </reference>
+        <reference name="onestepcheckout.summary">
+            <action method="setTemplate" ifconfig="carriers/dropshipping/active">
+                <template>sm/vendors/checkout/onestepcheckout/summary.phtml</template>
+            </action>
+        </reference>
+    </onestepcheckout_index_index>   
+    
+    <onestepcheckout_ajax_save_billing>
+        <reference name="choose-shipping-method">
+            <action method="setTemplate" ifconfig="carriers/dropshipping/active">
+                <template>sm/vendors/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+        </reference>
+        <reference name="onestepcheckout.summary">
+            <action method="setTemplate" ifconfig="carriers/dropshipping/active">
+                <template>sm/vendors/checkout/onestepcheckout/summary.phtml</template>
+            </action>
+        </reference>
+    </onestepcheckout_ajax_save_billing> 
+    
+</layout>

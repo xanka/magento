@@ -1,0 +1,44 @@
+<?php
+/**
+ * Date: 10/15/12
+ * Time: 11:34 PM
+ */
+
+$currentCat = Mage::getModel('catalog/layer')->getCurrentCategory();
+$helper = Mage::helper('planet')
+?>
+<div class="toolbar">&nbsp;</div>
+<div id="top-category" class="clearfix">
+	<?php echo $this->getToolbarHtml() ?>
+    <?php $_helper = Mage::helper('catalog/category') ?>
+    <?php $_categories = $_helper->getStoreCategories() ?>
+    <?php $currentCategory = Mage::registry('current_category') ?>
+    <?php if (count($_categories) > 0): ?>
+    <ul>
+        <?php foreach($_categories as $_category): ?>
+        <li <?php if ($currentCategory && $currentCategory->getId() == $_category->getId()): ?> class="selected" <?php endif ?>>
+
+            <?php if ($currentCategory && $currentCategory->getId() == $_category->getId()): ?>
+            <?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+            <?php $_subcategories = $_category->getChildrenCategories() ?>
+            <?php if (count($_subcategories) > 0): ?>
+
+                    <?php foreach($_subcategories as $_subcategory): ?>
+                    <div class="cat-item">
+                        <?php $cat = Mage::getModel('catalog/category')->load($_subcategory->getId()) ?>
+                        <?php $imgUrl = $helper->resizeImg('catalog/category/'.$cat->getData('thumbnail'),170,170) ?> <!--resize image-->
+<!--                        --><?php //var_dump($imgUrl); die; ?>
+                        <div class="cat-image"><a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>"><?php if ($cat->getData('thumbnail')): ?><img src="<?php echo $imgUrl ?>" /><?php endif ?></a></div>
+                        <h3 class="cat-name"><a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>"><?php echo $_subcategory->getName() ?></a></h3>
+                    </div>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+</div>
+

@@ -1,0 +1,39 @@
+<?php
+$helper = Mage::helper('smvendors');
+$vendors = Mage::getModel('smvendors/vendor')->getCollection();
+$home_url = Mage::getBaseUrl();
+?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Merchants') ?><span></span></h1>
+</div>
+<div class="toolbar">&nbsp;</div>
+<div class="mechant-list">
+    <!--h2>Merchant at planet V</h2-->
+    <ul class="merchant-list-inner">
+        <?php foreach ($vendors as $vendor): ?>
+            <?php
+            $vendorImage = $helper->getVendorImage($vendor);
+            $resizedImageUrl = $helper->getVendorResizedLogo($vendorImage, 88, 80, 'vendor', 'list');
+            ?>
+            <!--        Check if vendor has slug or active ?-->
+            <?php if ($vendor->getData('vendor_status') == 0 || is_null($vendor->getData('vendor_slug'))) continue; ?>
+            <li>
+                <p class="merchant-top"><a href="<?php echo $helper->getVendorUrl($vendor) ?>"><span class="mechant-name"><?php echo $vendor->getData('vendor_name') ?></span></a>
+                    <span class="merchant-button" accesskey=""><a href="<?php
+        if ($vendor): echo $home_url . 'planet/contact/write/vendor/' . $vendor->getData('vendor_id');
+        endif
+            ?>"><?php echo $this->__('ask a question') ?></a></span></p>
+                <div class="merchant-logo"><img src="<?php echo $resizedImageUrl; ?>" /></div>
+                <div class="mechant-description">
+                    <?php
+                    $description = $vendor->getData('description');
+                    $description = substr($description, 0, 580);
+                    echo $description . ' ...';
+                    ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+
+    </ul>
+</div>

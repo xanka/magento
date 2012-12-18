@@ -1,0 +1,64 @@
+
+<?php $orders = $this->getOrders() ?>
+<?php foreach ($orders as $order): ?>
+<div class="order-container">
+    <h1><?php echo $this->__('Order #%s', $order->getRealOrderId()) ?></h1>
+    <p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($order->getCreatedAtStoreDate(), 'long')) ?></p>
+    <div class="col2-set">
+        <?php if (!$order->getIsVirtual()): ?>
+        <div class="col-1">
+            <h2><?php echo $this->__('Shipping Address') ?></h2>
+            <address><?php echo $order->getShippingAddress()->format('html') ?></address>
+        </div>
+        <div class="col-2">
+        <?php else: ?>
+        <div class="col-1">
+        <?php endif; ?>
+            <h2><?php echo $this->__('Billing Address') ?></h2>
+            <address><?php echo $order->getBillingAddress()->format('html') ?></address>
+        </div>
+    <?php if (!$order->getIsVirtual()): ?>
+    </div>
+    <div class="col2-set">
+        <div class="col-1">
+            <h2><?php echo $this->__('Shipping Method') ?></h2>
+             <?php echo $order->getShippingDescription() ?>
+        </div>
+    <?php endif; ?>
+        <div class="col-2">
+            <h2><?php echo $this->__('Payment Method') ?></h2>
+            <?php echo $this->getPaymentInfoHtml($order) ?>
+        </div>
+    </div>
+    <h2><?php echo $this->__('Items Ordered') ?></h2>
+    <table class="data-table" id="my-orders-table-<?php echo $order->getId(); ?>">
+        <col />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Product Name') ?></th>
+                <th><?php echo $this->__('SKU') ?></th>
+                <th class="a-right"><?php echo $this->__('Price') ?></th>
+                <th class="a-center"><?php echo $this->__('Qty') ?></th>
+                <th class="a-right"><?php echo $this->__('Subtotal') ?></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <?php echo $this->getOrderTotalsHtml($order) ?>
+        </tfoot>
+        <?php $items = $order->getItemsCollection(); ?>
+        <?php $count = $items->count(); ?>
+        <tbody>
+        <?php foreach ($items as $item): ?>
+            <?php if ($item->getParentItem()) continue; ?>
+            <?php echo $this->getItemHtml($item) ?>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('my-orders-table-<?php echo $order->getId(); ?>', {'tbody tr' : ['odd', 'even', 'first', 'last']})</script>
+</div>
+<?php endforeach; ?>
+<script type="text/javascript">window.print();</script>

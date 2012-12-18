@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<layout>
+    <planet_community_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+
+        <reference name="left">
+            <block type="planet/community_menu" name="community-menu" template="planet/community/menu.phtml" />
+        </reference>
+
+        <reference name="content">
+            <block type="planet/community_menu" name="community-content" template="planet/community/community.phtml" />
+        </reference>
+
+    </planet_community_index>
+
+    <!--<adminhtml_partner_index>-->
+        <!--<reference name="content">-->
+            <!--<block type="planet/adminhtml_partner" name="example" />-->
+        <!--</reference>-->
+    <!--</adminhtml_partner_index>-->
+
+    <adminhtml_partner_edit>
+        <reference name="content">
+            <block type="planet/adminhtml_partner_edit" name="example_edit" />
+        </reference>
+    </adminhtml_partner_edit>
+
+    <smvendors_products_index>
+        <!--<remove name="left" />-->
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </smvendors_products_index>
+
+
+
+
+</layout>

@@ -1,0 +1,29 @@
+<?php
+/**
+ * Date: 10/21/12
+ * Time: 1:24 AM
+ */
+$params = $this->getRequest()->getParams();
+$orderId = $params['id'];
+
+if ($orderId > 0):
+?>
+<form id="order-manager" action="<?php echo $this->getUrl('*/*/result'); ?>">
+    <span class="order-manager-item">This order will be :</span>
+    <select name="decision">
+        <option value="1">Accept</option>
+        <option value="0">No</option>
+    </select>
+
+    <span class="order-manager-item">Reason:</span>
+    <select name="reason">
+        <option value="outofstock">Out of Stock</option>
+        <option value="canfullfil">Cannot fullfil</option>
+        <option value="dontaccept">Dont wish to accept order</option>
+    </select>
+
+    <button type="submit" value="send" >Send</button>
+</form>
+<?php else:  ?>
+    <h3>Order not found!</h3>
+<?php endif ?>

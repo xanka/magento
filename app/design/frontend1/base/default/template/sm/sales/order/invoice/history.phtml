@@ -1,0 +1,73 @@
+
+<?php $coreHelper = $this->helper('core'); ?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $invoices = $this->getInvoices(); ?>
+<form action="<?php echo $this->getPrintUrl() ?>" id="my-invoices-form" method="post">
+    <div class="page-title">
+        <h1><?php echo $this->__('My Invoices') ?><span></span></h1>
+        <button onclick="printInvoices();" class="button link-print"><span><?php echo $this->__('Print Invoice') ?></span></button>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+    <?php if($invoices->getSize()): ?>
+    <table class="data-table" id="my-invoices-table">
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <thead>
+            <tr>
+                <th><input type="checkbox" value="1" name="print" /></th>
+                <th><?php echo $this->__('Invoice #') ?></th>
+                <th><?php echo $this->__('Order #') ?></th>
+                <th><?php echo $this->__('Subtotal') ?></th>
+                <th><?php echo $this->__('Shipping & handling') ?></th>
+                <th><?php echo $this->__('Grand total') ?></th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $_odd = ''; ?>
+            <?php foreach ($invoices as $invoice): ?>
+            <tr>
+                <td><input type="checkbox" value="<?php echo $invoice->getId() ?>" class="checkbox validate-one-required-by-name check-invoice" name="invoice_ids[]" /></td>
+                <td><?php echo $invoice->getIncrementId() ?></td>
+                <td><a href="<?php echo $this->getOrderViewUrl($invoice) ?>"><?php echo $invoice->getOrderIncrementId() ?></a></td>
+                <td><?php echo $coreHelper->currency($invoice->getSubtotal(), true, false) ?></td>
+                <td><?php echo $coreHelper->currency($invoice->getShippingAmount(), true, false) ?></td>
+                <td><?php echo $coreHelper->currency($invoice->getGrandTotal(), true, false) ?></td>
+                <td class="a-center">
+                    <span class="nobr"><a href="<?php echo $this->getViewUrl($invoice) ?>"><?php echo $this->__('View Invoice') ?></a></span>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<form>
+<script type="text/javascript">
+    decorateTable('my-invoice-table');
+    jQuery('#my-invoices-table thead input:checkbox').click(
+        function() {
+            jQuery('#my-invoices-table tbody input:checkbox').attr('checked', this.checked);
+        }
+    );
+    jQuery('#my-invoices-table tbody input:checkbox').click(function() {
+        console.log(this.checked);
+        if (!this.checked) {
+            jQuery('#my-invoices-table thead input:checkbox').attr('checked', false);
+        }
+    });
+    jQuery('.link-print').click(function() {
+        jQuery('#my-invoices-form').submit();
+    });
+
+    function printInvoices() {
+        jQuery('#my-invoices-form').submit();
+    }
+</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('You have no invoice.'); ?></p>
+<?php endif ?>

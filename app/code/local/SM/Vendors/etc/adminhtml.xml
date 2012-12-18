@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <smvendors>
+                                        <title>SmartOsc - General</title>
+                                    </smvendors>
+                                    <smvendors_email>
+                                        <title>SmartOsc - Vendor Emails</title>
+                                    </smvendors_email>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <smvendors module="smvendors">
+                        <title>Vendors</title>
+                        <sort_order>40</sort_order>
+                        <children>
+                            <vendors_manager module="smvendors">
+                                <title>Vendors</title>
+                                <sort_order>0</sort_order>
+                            </vendors_manager>
+							
+                            <!-- <vendors_page module="smvendors">
+                                <title>Page</title>
+                                <sort_order>1</sort_order>
+                            </vendors_page> -->
+							
+                            <vendors_banner module="smvendors">
+                                <title>Banner</title>
+                                <sort_order>1</sort_order>
+                            </vendors_banner>
+							
+                            <vendors_profile module="smvendors">
+                                <title>Profile</title>
+                                <sort_order>2</sort_order>
+                            </vendors_profile>
+							
+                            <vendors_orders module="smvendors">
+                                <title>Orders</title>
+                                <children>
+                                    <actions translate="title">
+                                        <title>Actions</title>
+                                        <children>
+                                            <create translate="title">
+                                                <title>Create</title>
+                                            </create>
+                                            <view translate="title">
+                                                <title>View</title>
+                                            </view>
+                                            <email translate="title">
+                                                <title>Send Order Email</title>
+                                            </email>
+                                            <reorder translate="title">
+                                                <title>Reorder</title>
+                                            </reorder>
+                                            <edit translate="title">
+                                                <title>Edit</title>
+                                            </edit>
+                                            <cancel translate="title">
+                                                <title>Cancel</title>
+                                            </cancel>
+                                            <review_payment translate="title">
+                                                <title>Accept or Deny Payment</title>
+                                            </review_payment>
+                                            <capture translate="title">
+                                                <title>Capture</title>
+                                            </capture>
+                                            <invoice translate="title">
+                                                <title>Invoice</title>
+                                            </invoice>
+                                            <creditmemo translate="title">
+                                                <title>Creditmemo</title>
+                                            </creditmemo>
+<!--                                             <hold translate="title"><title>Hold</title></hold> -->
+<!--                                             <unhold translate="title"><title>Unhold</title></unhold> -->
+                                            <ship translate="title">
+                                                <title>Ship</title>
+                                            </ship>
+                                            <comment translate="title">
+                                                <title>Comment</title>
+                                            </comment>
+                                            <emails translate="title">
+                                                <title>Send Sales Emails</title>
+                                            </emails>
+                                        </children>
+                                    </actions>
+                                </children>
+			                    
+                                <sort_order>10</sort_order>
+                            </vendors_orders>
+			                
+                            <vendors_invoices module="smvendors">
+                                <title>Invoices</title>
+                                <sort_order>20</sort_order>
+                            </vendors_invoices>
+                            
+                            <vendors_shipments module="smvendors">
+                                <title>Shipments</title>
+                                <sort_order>30</sort_order>
+                            </vendors_shipments>  
+                            
+                            <vendors_creditmemos module="smvendors">
+                                <title>Credit Memos</title>
+                                <sort_order>40</sort_order>
+                            </vendors_creditmemos>
+							
+                          
+                        </children>
+                    </smvendors>
+                    <report>
+                        <title>Reports</title>
+                        <sort_order>80</sort_order>
+                        <children>
+                            <smvendors module="smvendors">
+                                <title>Vendor Reports</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <vendororders module="smvendors">
+                                        <title>Orders Report</title>
+                                        <sort_order>1</sort_order>
+                                    </vendororders>
+                                </children>
+                            </smvendors>
+                        </children>
+                    </report>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <smvendors>
+            <title>Vendors</title>
+            <sort_order>80</sort_order>
+            <children>
+                <vendors_manager module="smvendors">
+                    <title>Vendors</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/vendors/index</action>
+                </vendors_manager>
+				
+                <!-- <vendors_page module="smvendors">
+                    <title>Page</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/vendors_page/index</action>
+                </vendors_page> -->
+				
+                <vendors_banner module="smvendors">
+                    <title>Banner</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/vendors_banner/index</action>
+                </vendors_banner>
+				
+                <vendors_profile module="smvendors">
+                    <title>Profile</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/vendors/profile</action>
+                </vendors_profile>
+				
+                <vendors_orders module="smvendors">
+                    <title>Orders</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/vendors_order/index</action>
+                </vendors_orders>
+				
+                <vendors_invoices module="smvendors">
+                    <title>Invoices</title>
+                    <sort_order>20</sort_order>
+                    <action>adminhtml/vendors_order_invoice/index</action>
+                </vendors_invoices>
+				
+                <vendors_shipments module="smvendors">
+                    <title>Shipments</title>
+                    <sort_order>30</sort_order>
+                    <action>adminhtml/vendors_order_shipment/index</action>
+                </vendors_shipments>  				
+                
+                <vendors_creditmemos module="smvendors">
+                    <title>Credit Memos</title>
+                    <sort_order>40</sort_order>
+                    <action>adminhtml/vendors_order_creditmemo/index</action>                   
+                </vendors_creditmemos>
+              
+            </children>
+            <depends><config>smvendors/general/enable</config></depends>
+        </smvendors>
+        <report>
+            <title>Reports</title>
+            <sort_order>80</sort_order>
+            <children>
+                <smvendors module="smvendors">
+                    <title>Vendor Reports</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <vendororders module="smvendors">
+                            <title>Orders and Delivery Report</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/vendors_reports/vendororders</action>
+                        </vendororders>
+                    </children>
+                </smvendors>
+            </children>
+        </report>
+    </menu>
+</config>

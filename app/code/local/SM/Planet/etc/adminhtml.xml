@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<config>
+    <menu>
+        <smvendors>
+            <children>      
+                <customandrejectemail translate="title" module="planet">
+                    <title>Custom and Send rejected Email</title>
+                    <sort_order>400</sort_order>
+                    <action>adminhtml/customemail/</action>
+                </customandrejectemail>
+                <invitecustomer translate="title" module="planet">
+                    <title>Invite customer</title>
+                    <sort_order>401</sort_order>
+                    <action>adminhtml/invitation/</action>
+                </invitecustomer>
+            </children>  
+        </smvendors>
+
+        <!--<planet>-->
+            <!--<title>Advertise</title>-->
+            <!--<sort_order>6</sort_order>-->
+            <!--<children>-->
+                <!--<partner module="planet">-->
+                    <!--<title>Manage Partner</title>-->
+                    <!--<sort_order>1</sort_order>-->
+                    <!--<action>adminhtml/partner/</action>-->
+                <!--</partner>-->
+            <!--</children>-->
+        <!--</planet>-->
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <smvendors>
+                        <children>
+                            <customandrejectemail translate="title" module="planet">
+                                <title>Custom and Send rejected Email</title>
+                                <sort_order>400</sort_order>
+                                <action>adminhtml/customemail/</action>
+                            </customandrejectemail>
+                            <invitecustomer translate="title" module="planet">
+                                <title>Invite customer</title>
+                                <sort_order>401</sort_order>
+                                <action>adminhtml/invitation/</action>
+                            </invitecustomer>
+                        </children>
+                    </smvendors>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <invitation translate="title">
+                                        <title>Invitation Email</title>
+                                        <sort_order>111</sort_order>
+                                    </invitation>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <!--<planet>-->
+                        <!--<children>-->
+                            <!--<partner module="planet">-->
+                                <!--<title>Manage Partner</title>-->
+                            <!--</partner>-->
+                        <!--</children>-->
+                    <!--</planet>-->
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

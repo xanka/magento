@@ -1,0 +1,89 @@
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php //$vendorOrders = $this->getOrders(); ?>
+<?php $vendorOrders = $this->getVendorOrders();
+$order = Mage::getSingleton('sales/order');
+$vendorHelper = Mage::helper('smvendors');
+?>
+<form action="<?php echo $this->getPrintUrl() ?>" id="my-orders-form" method="post">
+    <div class="page-title">
+        <h1><?php echo $this->__('My Orders') ?><span></span></h1>
+        <button onclick="printOrders();" class="button link-print"><span><?php echo $this->__('Print Order') ?></span></button>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+    <?php if($vendorOrders->getSize()): ?>
+    <table class="data-table" id="my-orders-table">
+        <col width="1" />
+        <col />
+        <col width="1" />
+        <col />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <thead>
+            <tr>
+                <th><input type="checkbox" value="1" name="print" /></th>
+                <th><?php echo $this->__('Order #') ?></th>
+                <th><?php echo $this->__('Date') ?></th>
+                <th><?php echo $this->__('Vendor') ?></th>
+                <th><span class="nobr"><?php echo $this->__('Order Total') ?></span></th>
+                <th><span class="nobr"><?php echo $this->__('Order Status') ?></span></th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $_odd = ''; ?>
+            <?php 
+            $vendors = array();
+            foreach ($vendorOrders as $vendorOrder): 
+            	if (!isset($vendors[$vendorOrder->getVendorId()])) {
+            		$vendors[$vendorOrder->getVendorId()] = $vendorOrder->getVendor();
+            	}
+            	$vendor = $vendors[$vendorOrder->getVendorId()];
+            ?>
+            <tr>
+                <td><input type="checkbox" value="<?php echo $vendorOrder->getId() ?>" class="checkbox validate-one-required-by-name check-order" name="order_ids[]" /></td>
+                <td><?php echo $vendorOrder->getIncrementId() ?></td>
+                <td><span class="nobr"><?php echo $this->formatDate($vendorOrder->getCreatedAt()) ?></span></td>
+                <td><a href="<?php echo $vendor->getVendorUrl() ?>" title="<?php echo $vendor->getVendorName() ?>"><?php echo $vendor->getVendorName() ?></a></td>
+                <td><?php echo $order->formatPrice($vendorOrder->getGrandTotal()) ?></td>
+                <td><em><?php echo $vendorOrder->getStatusLabel() ?></em></td>
+                <td class="a-center">
+                    <span class="nobr"><a href="<?php echo $this->getViewUrl($vendorOrder) ?>"><?php echo $this->__('View Order') ?></a>
+                        <?php /*<span class="separator">|</span><a href="<?php echo $this->getTrackUrl($vendorOrder) ?>"><?php echo $this->__('Track Order') ?></a>&nbsp;*/ ?>
+                        <?php if ($this->helper('sales/reorder')->canReorder($vendorOrder)) : ?>
+                        <span class="separator">|</span> <a href="<?php echo $this->getReorderUrl($vendorOrder) ?>" class="link-reorder"><?php echo $this->__('Reorder') ?></a>
+                    <?php endif ?>
+                    </span>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</form>
+<script type="text/javascript">
+    decorateTable('my-orders-table');
+
+    jQuery('#my-orders-table thead input:checkbox').click(
+        function() {
+            jQuery('#my-orders-table tbody input:checkbox').attr('checked', this.checked);
+        }
+    );
+    jQuery('#my-orders-table tbody input:checkbox').click(function() {
+        console.log(this.checked);
+        if (!this.checked) {
+            jQuery('#my-orders-table thead input:checkbox').attr('checked', false);
+        }
+    });
+    jQuery('.link-print').click(function() {
+        jQuery('#my-orders-form').submit();
+    });
+
+    function printOrders() {
+        jQuery('#my-orders-form').submit();
+    }
+</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('You have placed no orders.'); ?></p>
+<?php endif ?>

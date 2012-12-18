@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<widgets>
+    <category_widget type="planet/home_widget_menu" translate="menu on frontpage" module="planet">
+        <name>Home Menu</name>
+        <description>Front menu on homepage</description>
+        <parameters>
+            <block_title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Block Title</label>
+                <type>text</type>
+            </block_title>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>smwidget/info.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>smwidget/info.phtml</value>
+                        <label>Front Menu - Default Template</label>
+                    </default>
+                    <!-- Add different temmplates here for different block positions -->
+                </values>
+            </template>
+
+        </parameters>
+    </category_widget>
+
+    <productbookmark type="planet/home_widget_bookmark" translate="Product Bookmark" module="planet">
+        <name>Product Bookmark</name>
+        <description>Product bookmark on product view</description>
+        <parameters>
+            <block_title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Block Title</label>
+                <type>text</type>
+            </block_title>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>smwidget/catalog/product/bookmark.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>smwidget/catalog/product/bookmark.phtml</value>
+                        <label>Front Menu - Default Template</label>
+                    </default>
+                    <!-- Add different temmplates here for different block positions -->
+                </values>
+            </template>
+
+        </parameters>
+    </productbookmark>
+
+    <categorylist type="planet/category_widget_list" translate="List Category" module="planet">
+        <name>List Category</name>
+        <description>List subcategory on category lever 1</description>
+        <parameters>
+            <block_title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Block Title</label>
+                <type>text</type>
+            </block_title>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>smwidget/catalog/subcategory/list.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>smwidget/catalog/subcategory/list.phtml</value>
+                        <label>List subcategory - Default Template</label>
+                    </default>
+                    <!-- Add different temmplates here for different block positions -->
+                </values>
+            </template>
+
+        </parameters>
+    </categorylist>
+
+    <topnavigation type="planet/home_widget_toplink" translate="Top Link" module="planet">
+        <name>Top Navigation</name>
+        <description>Navigation</description>
+        <parameters>
+            <block_title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Block Title</label>
+                <type>text</type>
+            </block_title>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>smwidget/home/navigation.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>smwidget/home/navigation.phtml</value>
+                        <label>Top Navigation - Default Template</label>
+                    </default>
+                    <!-- Add different temmplates here for different block positions -->
+                </values>
+            </template>
+
+        </parameters>
+    </topnavigation>
+
+    <marketplace type="planet/category_widget_marketplace" translate="Market place" module="planet">
+        <name>Marketplace</name>
+        <description>Marketplace place</description>
+        <parameters>
+            <block_title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Block Title</label>
+                <type>text</type>
+            </block_title>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+                <type>select</type>
+                <value>smwidget/catalog/subcategory/marketplace.phtml</value>
+                <values>
+                    <default translate="label">
+                        <value>smwidget/catalog/subcategory/marketplace.phtml</value>
+                        <label>Marketplace - Default Template</label>
+                    </default>
+                    <!-- Add different temmplates here for different block positions -->
+                </values>
+            </template>
+
+        </parameters>
+    </marketplace>
+</widgets>

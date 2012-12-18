@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<layout>
+
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/local.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/jqtransformplugin/jqtransform.css</stylesheet></action>
+
+            <action method="addJs"><file>sm/planet/jquery-1.7.1.min.js</file></action>
+
+            <!--<action method="addJs"><file>sm/planet/jquery.datepick.js</file></action>-->
+            <!--<action method="addCss" ><stylesheet>css/jquery.datepick.css</stylesheet></action>-->
+
+            <!--<action method="addJs"><file>sm/planet/jquery-ui-1.8.18.custom.min.js</file></action>-->
+
+            <action method="addJs"><file>sm/planet/jqtransformplugin/jquery.jqtransform.js</file></action>
+
+        </reference>
+        <reference name="header">
+            <remove name="top.search" />
+            <remove name="top.links" />
+            <remove name="store_language" />
+            <remove name="catalog.topnav" />
+            <block type="planet/home_search" name="planet.top.search" as="topSearch" template="catalogsearch/form.mini.phtml" />
+            <block type="core/template" name="mini.cart" template="checkout/minicart.phtml" />
+
+        </reference>
+
+        <reference name="left" >
+            <remove name="catalog.leftnav" />
+            <remove name="left.permanent.callout" />
+            <remove name="tags_popular" />
+            <remove name="left.newsletter" />
+
+        </reference>
+        <reference name="right">
+            <remove name="cart_sidebar" />
+            <remove name="right.permanent.callout" />
+            <remove name="" />
+            <remove name="" />
+        </reference>
+        <reference name="content">
+            <block type="cms/block" name="planet-home-navigation">
+                <action method="setBlockId"><block_id>planet-home-navigation</block_id></action>
+            </block>
+        </reference>
+    </default>
+
+    <!--Home page-->
+    <cms_index_index>
+        <!--<remove name="right"/>-->
+        <!--<remove name="left"/>-->
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <remove name="breadcrumbs" />
+
+        <reference name="content">
+
+            <!--<block type="core/template" name="home-partner" template="planet/home/partner.phtml" />-->
+        </reference>
+    </cms_index_index>
+
+
+    <catalog_category_view>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <block type="core/template" name="catalog.listing" template="catalog/list.phtml"/>
+        </reference>
+        <remove name="right" />
+
+        <reference name="content" >
+            <block type="core/template" name="featured.product" after="category.products" template="catalog/product/featured.phtml" />
+        </reference>
+    </catalog_category_view>
+
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addJs"><file>sm/planet/jQueryUI.js</file></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+            <!--<block type="core/template" name="featured.product" after="category.products" template="catalog/product/featured.phtml" />-->
+        </reference>
+
+        <reference name="left">
+            <block type="smvendors/catalog_layer_view" name="smvendors.leftnav" after="currency" template="catalog/layer/view.phtml"/>
+            <block type="core/template" name="catalog.listing" template="catalog/list.phtml"/>
+        </reference>
+
+        <reference name="content" >
+            <block type="core/template" name="featured.product" after="category.products" template="catalog/product/featured.phtml" />
+        </reference>
+    </catalog_product_view>
+
+    <!--wishlist page-->
+
+    <!--<wishlist_index_index>-->
+        <!--<reference name="root">-->
+            <!--<action method="setTemplate"><template>page/2columns-right.phtml</template></action>-->
+        <!--</reference>-->
+        <!--<remove name="left" />-->
+        <!--<reference name="right" >-->
+            <!--<remove name="right.reports.product.viewed" />-->
+            <!--<remove name="catalog.compare.sidebar" />-->
+            <!--<remove name="wishlist_sidebar" />-->
+            <!--<remove name="right.poll" />-->
+        <!--</reference>-->
+    <!--</wishlist_index_index>-->
+
+    <admin_ordermanage_index>
+        <reference name="content" >
+            <block type="core/template" name="order.manage" template="order/manage.phtml" />
+        </reference>
+    </admin_ordermanage_index>
+
+
+
+    <catalogsearch_result_index>
+        <!--<remove name="right" />-->
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+    </catalogsearch_result_index>
+
+    <cms_page_view>
+        <reference name="left">
+            <block type="core/template" name="left-nav" template="page/block/left.phtml" />
+        </reference>
+    </cms_page_view>
+
+     <!--contact us -->
+
+    <planet_contact_write>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <action method="setHeaderTitle" translate="title" module="contacts"><title>Contact Us</title></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="contactForm" template="planet/contacts/form.phtml"/>
+        </reference>
+    </planet_contact_write>
+
+    <planet_contact_success>
+        <reference name="content">
+            <block type="core/template" name="contactForm" template="planet/contacts/success.phtml"/>
+        </reference>
+    </planet_contact_success>
+
+    <customer_account>
+        <reference name="left">
+            <block type="cms/block" name="vendor_signup">
+                <action method="setBlockId"><blockId>vendor_signup</blockId></action>
+            </block>
+        </reference>
+    </customer_account>
+</layout>

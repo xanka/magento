@@ -1,0 +1,24 @@
+<?php 
+    $vendor = $this->getVendor();
+    /* @var $vendor SM_Vendors_Model_Vendor */ 
+    $customer = $vendor->getCustomerModel();
+    $address = $customer->getPrimaryBillingAddress(); 
+?>
+<?php if($address):?>
+<?php echo $address->getCompany()?>
+<br/>
+<?php endif;?>
+
+<?php if($customer->getAbnNumber()):?>
+ABN: <?php echo $customer->getAbnNumber()?>
+<br/>
+<?php endif;?>
+
+<?php if($address):?>
+<?php echo $address->getStreetFull()?>
+<br/>
+ph: <?php echo $address->getTelephone()?>
+<br/>
+<?php endif;?>
+<a href="mailto:<?php echo $vendor->getEmail()?>"><?php echo $vendor->getEmail()?></a>
+<br/><br/>

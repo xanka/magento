@@ -1,0 +1,28 @@
+<?php
+$todayDate  = Mage::app()->getLocale()->date()->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
+$featuredProduct = Mage::getModel('catalog/product')->getCollection();
+$featuredProduct->addAttributeToFilter('is_featured',array('eq' => 1));
+$featuredProduct
+    ->addAttributeToFilter('featured_valid_from', array('date' => true, 'to' => $todayDate))
+    ->addAttributeToFilter('featured_valid_to', array('or'=> array(
+    0 => array('date' => true, 'from' => $todayDate),
+    1 => array('is' => new Zend_Db_Expr('null')))
+), 'left')
+    ->addAttributeToSort('featured_valid_from', 'desc')
+    ->addAttributeToSort('created_at', 'desc');
+?>
+
+<div id="featured-product">
+<?php if (count($featuredProduct)>0): ?><h3>Featured Product</h3> <?php endif ?>
+<?php foreach($featuredProduct as $_product ): ?>
+    <?php $_product = Mage::getModel('catalog/product')->load($_product->getId()) ?>
+    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+        <img class="img-small" id="<?php echo $_product->getId(); ?>" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+        <img class="img-big" id="<?php echo $_product->getId(); ?>-big" style="display:none" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300); ?>" width="300" height="300" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+    </a>
+<?php endforeach; ?>
+</div>
+
+
+
+

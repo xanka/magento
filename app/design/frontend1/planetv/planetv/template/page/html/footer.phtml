@@ -1,0 +1,77 @@
+<?php
+/**
+ * Date: 10/6/12
+ */
+$home_url = Mage::helper('core/url')->getHomeUrl();
+
+$product  = Mage::registry('current_product');
+$vendor = '';
+if ($product) {
+    $vendor = Mage::helper('smvendors')->getVendorByProduct($product);
+}
+?>
+
+<div class="footer-container">
+    <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('planet/home/partner.phtml')->toHtml() ?>
+    <div class="footer">
+		<h3 class="footer-tag"><?php echo $this->__('find out more') ?></h3>
+        <div id="footer-newsletter"><div class="inner">
+			<h3 class="footer-tag"><?php echo $this->__('keep in touch') ?></h3>
+            <?php echo $this->__('Sign up for our newsletter') ?>
+            <form id="form-newsletter">
+                <input class="input-text" id="form-newsletter-text" type="text" value="enter your email" name="email_newsletter">
+				<button class="button"><span><span></span><?php echo $this->__('go') ?></span></button>
+            </form>
+            <a href="#" class="social-icon twitter"><img class="footer-logo" src="<?php echo Mage::getDesign()->getSkinUrl('images/twitter.png') ?>" /></a>
+            <a href="#" class="social-icon facebook"><img src="<?php echo Mage::getDesign()->getSkinUrl('images/facebook.png') ?>" /></a>
+			<a href="#" class="social-icon blog"><?php echo $this->__('read our blog') ?></a>
+        </div></div>
+        <div id="footer-col3" class="footer-col">
+            <h3><?php echo $this->__('about us') ?></h3>
+            <ul>
+                <li><a href="<?php echo $home_url.'shop-with-us'  ?>"><?php echo $this->__('how we work') ?></a></li>
+                <li><a href="#"><?php echo $this->__('testimonials') ?></a></li>
+                <li><a href="#"><?php echo $this->__('security') ?></a></li>
+                <li><a href="#"><?php echo $this->__('legal stuff') ?></a></li>
+            </ul>
+        </div>
+        <div id="footer-col2" class="footer-col">
+            <h3><?php echo $this->__('selling on planet v') ?></h3>
+            <ul>
+                <li><a href="#"><?php echo $this->__('why sell with us') ?></a></li>
+                <li><a href="#"><?php echo $this->__('promotion us') ?></a></li>
+                <li><a href="#"><?php echo $this->__('seller help area') ?></a></li>
+                <li><a href="#"><?php echo $this->__('faqs') ?></a></li>
+                <li><a href="#"><?php echo $this->__('register for the marketplace') ?></a></li>
+                <li><a href="#"><?php echo $this->__('register for the directory') ?></a></li>
+                <li><a href="#"><?php echo $this->__('my account') ?></a></li>
+                <li><a href="<?php if ($vendor): echo $home_url.'planet/contact/write/vendor/'.$vendor->getData('vendor_id'); endif ?>"><?php echo $this->__('contact us') ?></a></li>
+            </ul>
+        </div>
+        <div id="footer-col1" class="footer-col">
+            <h3><?php echo $this->__('buying on planet v') ?></h3>
+            <ul>
+                <li><a href="<?php echo $home_url.'shop-with-us'  ?>"><?php echo $this->__('shop with us') ?></a></li>
+                <li><a href="<?php echo $home_url.'vendor/list'  ?>"><?php echo $this->__('merchants list') ?></a></li>
+                <li><a href="<?php echo $home_url.'delivery' ?>"><?php echo $this->__('delivery') ?></a></li>
+                <li><a href="<?php echo $home_url.'return' ?>"><?php echo $this->__('returns') ?></a></li>
+                <li><a href="#"><?php echo $this->__('faqs') ?></a></li>
+                <li><a href="#"><?php echo $this->__('where is my order') ?></a></li>
+                <li><a href="<?php echo $home_url.'customer/account/login' ?>"><?php echo $this->__('register as an customer') ?></a></li>
+                <li><a href="<?php echo $home_url.'customer/account/index' ?>"><?php echo $this->__('my account') ?></a></li>
+                <li><a href="<?php echo $home_url.'contact-us' ?>"><?php echo $this->__('contact us') ?></a></li>
+            </ul>
+        </div>
+        <span id="footer-copyright" >Copyright @ 2012 Planet V.Designed by  Assembly Marketing and Powered by Chapper Eight |  Add to Favorites</span>
+    </div>
+</div>
+<!--<script type="text/javascript" >-->
+<!--    var searchForm = new Varien.searchForm('form-newsletter', '', '--><?php //echo $this->__('Enter Your Email') ?><!--');-->
+<!--</script>-->
+
+    <script type="text/javascript">
+        jQuery('#form-newsletter-text').click(
+                function(){
+                    jQuery(this).val('')});
+    </script>
+

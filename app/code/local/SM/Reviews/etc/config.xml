@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_Reviews>
+            <version>1.0.1</version>
+        </SM_Reviews>
+    </modules>
+
+    <global>
+        <blocks>
+            <smreviews>
+                <class>SM_Reviews_Block</class>
+            </smreviews>
+        </blocks>
+
+        <resources>
+            <smreviews_setup>
+                <setup>
+                    <module>SM_Reviews</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </smreviews_setup>
+            <smreviews_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </smreviews_write>
+            <smreviews_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </smreviews_read>
+        </resources>
+        
+        <models>
+            <smreviews>
+                <class>SM_Reviews_Model</class>
+                <resourceModel>smreviews_resource</resourceModel>
+            </smreviews>
+            <smreviews_resource>
+                <class>SM_Reviews_Model_Resource</class>
+                <entities>
+                    <reviews>
+                        <table>sm_reviews</table>
+                    </reviews>
+                </entities>
+            </smreviews_resource>
+        </models>
+
+        <helpers>
+            <smreviews>
+                <class>SM_Reviews_Helper</class>
+            </smreviews>
+        </helpers>
+        
+        <template>
+			<email>
+				<smreviews_email_request_review_vendor>
+					<label>Reviews - Request customer to review vendor</label>
+					<file>reviews/request_review_vendor.html</file>
+					<type>html</type>
+				</smreviews_email_request_review_vendor>
+			</email>
+		</template>
+    </global>
+  
+  	<frontend>
+  		<routers>
+  			<smvendors>
+  				<args>
+  					<modules>
+  						<smreviews before="SM_Vendors">SM_Reviews</smreviews>
+  					</modules>
+  				</args>
+  			</smvendors>
+  		</routers>
+  	</frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <smreviews before="Mage_Adminhtml">SM_Reviews_Adminhtml</smreviews>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>    
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <smreviews>
+                    <file>sm/vendors_reviews.xml</file>
+                </smreviews>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+    </default>
+</config>

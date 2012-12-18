@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_Dropship>
+            <version>1.0.2</version>
+            <platform>ee</platform>
+        </SM_Dropship>
+    </modules>
+
+    <global>
+        <blocks>
+            <smdropship>
+                <class>SM_Dropship_Block</class>
+            </smdropship>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create_shipping_method_form>SM_Dropship_Block_Override_Adminhtml_Sales_Order_Create_Shipping_Method_Form</sales_order_create_shipping_method_form>
+                    <vendor_edit_tab_form>SM_Dropship_Block_Override_Adminhtml_Vendor_Edit_Tab_Form</vendor_edit_tab_form>
+                </rewrite>
+            </adminhtml>
+            <checkout>
+                <rewrite>
+                    <cart>SM_Dropship_Block_Override_Checkout_Cart</cart>
+                </rewrite>
+            </checkout>
+        </blocks>
+
+        <resources>
+            <smdropship_setup>
+                <setup>
+                    <module>SM_Dropship</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </smdropship_setup>
+            <smdropship_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </smdropship_write>
+            <smdropship_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </smdropship_read>
+        </resources>
+		
+        <models>
+            <smdropship>
+                <class>SM_Dropship_Model</class>
+                <resourceModel>smdropship_mysql4</resourceModel>
+            </smdropship>
+            <smdropship_mysql4>
+                <class>SM_Dropship_Model_Mysql4</class>
+                <entities>
+                    <vendor_shippping_flatrate>
+                        <table>sm_vendor_shipping_flatrate</table>
+                    </vendor_shippping_flatrate>
+                    <vendor_shippping_orderrate>
+                        <table>sm_vendor_shipping_order_rate</table>
+                    </vendor_shippping_orderrate>
+                    <vendor_shippping_multi_flat_rate>
+                        <table>sm_vendor_shipping_multi_flat_rate</table>
+                    </vendor_shippping_multi_flat_rate>
+                </entities>
+            </smdropship_mysql4>
+            <shipping>
+                <rewrite>
+                    <shipping>SM_Dropship_Model_Override_Shipping_Shipping</shipping>
+                </rewrite>
+            </shipping>
+            <sales>
+                <rewrite>
+                    <quote_address_rate>SM_Dropship_Model_Override_Sales_Quote_Address_Rate</quote_address_rate>
+                </rewrite>
+            </sales>            
+        </models>
+
+        <helpers>
+            <smdropship>
+                <class>SM_Dropship_Helper</class>
+            </smdropship>
+        </helpers>
+
+        <events>
+            <smvendors_order_split_before>
+                <observers>
+                    <smdropship>
+                        <type>singleton</type>
+                        <class>smdropship/observer</class>
+                        <method>hookSplitOrderBefore</method>
+                    </smdropship>
+                </observers>              
+            </smvendors_order_split_before>	
+            <smvendors_adminhtml_vendor_edit_tab_prepare_form>
+                <observers>
+                    <smdropship>
+                        <type>singleton</type>
+                        <class>smdropship/observer</class>
+                        <method>hookVendorEditTabPrepareForm</method>
+                    </smdropship>
+                </observers>              
+            </smvendors_adminhtml_vendor_edit_tab_prepare_form>
+           <adminhtml_customer_prepare_save>
+                <observers>
+                    <smdropship>
+                        <type>singleton</type>
+                        <class>smdropship/observer</class>
+                        <method>hookAdminCustomerPrepareSave</method>
+                    </smdropship>
+                </observers>
+            </adminhtml_customer_prepare_save>
+        </events>
+
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <smdropship>
+                    <file>sm/vendors_dropship.xml</file>
+                </smdropship>
+            </updates>
+        </layout>
+    </frontend>   
+    
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <smdropship before="Mage_Adminhtml">SM_Dropship_Adminhtml</smdropship>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>    
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <smdropship>
+                    <file>sm/vendors_dropship.xml</file>
+                </smdropship>
+            </updates>
+        </layout>
+        <events>
+            <smdropship_adminhtml_shipping_config_save>
+                <observers>
+                    <smdropship_save_flatrate_config>
+                        <class>smdropship/carrier_flatrate</class>
+                        <method>saveConfig</method>
+                    </smdropship_save_flatrate_config>
+                    <smdropship_save_orderrate_config>
+                        <class>smdropship/carrier_orderRate</class>
+                        <method>saveConfig</method>
+                    </smdropship_save_orderrate_config>
+                </observers>
+            </smdropship_adminhtml_shipping_config_save>
+        </events> 
+    </adminhtml>
+
+    <default>
+        <carriers>
+            <dropshipping>
+                <active>1</active>
+                <allowed_methods>dropship</allowed_methods>
+                <methods>dropship</methods>
+                <sallowspecific>0</sallowspecific>
+                <model>SM_Dropship_Model_Carrier_DropShip</model>
+                <name>Drop Shipping Method</name>
+                <title>Drop Shipping</title>
+                <specificerrmsg>
+                    This shipping method is currently unavailable.
+                    If you would like to ship using this shipping
+                    method, please contact us.
+                </specificerrmsg>
+                <default_shipping_product_fee>10</default_shipping_product_fee>
+				<!-- Use group alias -->
+            </dropshipping>
+            <vendormultiflatrate>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>smdropship/carrier_multiflatrate</model>
+                <name>Fixed</name>
+                <title>Multi Flat Rate</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <handling_type>F</handling_type>
+            </vendormultiflatrate>
+       
+        </carriers>
+    </default>
+</config>

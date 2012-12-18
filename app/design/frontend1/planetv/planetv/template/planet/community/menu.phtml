@@ -1,0 +1,22 @@
+<?php
+/**
+ * Date: 10/25/12
+ * Time: 12:26 AM
+ */
+
+$pages = $this->getPage();
+$home = Mage::helper('core/url')->getHomeUrl();
+$currentPage = Mage::getSingleton('cms/page')->getIdentifier();
+
+?>
+<div id="left-col" >
+    <ul>
+        <?php foreach($pages as $_page): ?>
+        <li <?php if ($currentPage == $_page): ?> class="selected" <?php endif ?>>
+            <a href="<?php echo $home.$_page ?>">
+                <?php echo Mage::getModel('cms/page')->load($_page)->getData('title') ?>
+            </a>
+        </li>
+        <?php endforeach ?>
+    </ul>
+</div>

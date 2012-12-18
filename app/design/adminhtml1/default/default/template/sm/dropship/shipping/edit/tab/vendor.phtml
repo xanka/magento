@@ -1,0 +1,40 @@
+<script>
+
+<?php if(($block = $this->getVendorBlock() ) && ($_gridJsObject=$block->getJsObjectName())): ?>
+    var relatedVendors = $H(<?php echo $block->getVendorsJson() ?>);
+    $('in_related_vendors').value =  relatedVendors.keys().join(',');
+    function registerArticleVendor(grid, element, checked){
+        if(checked){
+				console.log(element.value);
+                relatedVendors.set(element.value, element.value);
+        }
+        else{
+            relatedVendors.unset(element.value);
+        }
+        $('in_related_vendors').value = relatedVendors.keys().join(',');
+        grid.reloadParams = {'selected_vendors[]':relatedVendors.keys()};
+    }
+    function relatedVendorRowClick(grid, event){
+        var trElement = Event.findElement(event, 'tr');
+        var isInput   = Event.element(event).tagName == 'INPUT';
+        if(trElement){
+            var checkbox = Element.getElementsBySelector(trElement, 'input');
+            if(checkbox[0]){
+                var checked = isInput ? checkbox[0].checked : !checkbox[0].checked;
+                <?php echo $_gridJsObject ?>.setCheckboxChecked(checkbox[0], checked);
+            }
+        }
+    }
+    var tabIndex = 1000;
+    function relatedVendorRowInit(grid, row){
+    }
+
+
+    <?php echo $_gridJsObject ?>.rowClickCallback = relatedVendorRowClick;
+    <?php echo $_gridJsObject ?>.initRowCallback = relatedVendorRowInit;
+    <?php echo $_gridJsObject ?>.checkboxCheckCallback = registerArticleVendor;
+    <?php echo $_gridJsObject ?>.rows.each(function(row){relatedVendorRowInit(<?php echo $_gridJsObject ?>, row)});
+
+<?php endif; ?>
+//]]>
+</script>

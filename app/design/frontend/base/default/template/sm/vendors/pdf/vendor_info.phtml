@@ -1,0 +1,33 @@
+<?php
+// LOGO
+$vendor = $this->getVendor();
+if($vendor && $vendor->getVendorLogoUrl()):
+?>
+    <img src="<?php echo $vendor->getVendorLogoUrl()?>" 
+        height="100" alt="<?php echo $vendor->getVendorName()?>" style="display:block;"/>
+<?php else:?>
+<!-- default logo -->
+<?php endif;?>
+
+<br />
+
+<?php 
+// INFO
+    $vendor = $this->getVendor();
+    /* @var $vendor SM_Vendors_Model_Vendor */ 
+    $customer = $vendor->getCustomerModel();
+    $address = $customer->getPrimaryBillingAddress(); 
+?>
+<?php if($address):?>
+<?php echo $address->getCompany()?>
+<br/>
+<?php endif;?>
+
+<?php if($address):?>
+<?php echo $address->getStreetFull()?>
+<br/>
+<?php echo $address->getTelephone()?>
+<br/>
+<?php endif;?>
+<a href="mailto:<?php echo $vendor->getEmail()?>"><?php echo $vendor->getEmail()?></a>
+<br/><br/>

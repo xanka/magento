@@ -1,0 +1,191 @@
+
+<?php if (!($_shippingRateGroups = $this->getShippingRates())): ?>
+    <p><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></p>
+<?php else: ?>
+    <dl class="sp-methods">
+	<?php
+		$selectedShipping = Mage::getSingleton('checkout/cart')
+					->getQuote()
+					->getShippingAddress()
+					->getShippingMethod();
+		$selectedShippings = str_replace('dropshipping_','',$selectedShipping);
+		$selectedShippings = explode('|',$selectedShippings);
+	?>
+    <?php $shippingCodePrice = array(); ?>
+    <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates): ?>
+		<?php if($code == 'dropshipping'):?>
+			<?php 
+				$firtRate = reset($_rates);
+				$shippingRatesByVendors = $firtRate->getShippingRatesByVendors();
+			?>
+			<?php if(!empty($shippingRatesByVendors)):?>
+				<script>
+					shippingVendor = {};
+				</script>
+				<?php foreach($shippingRatesByVendors as $vendor):?>
+				<script>shippingVendor[<?php echo $vendor['vendor']->getId()?>] = "";</script>
+				<dt><?php echo $vendor['vendor']->getVendorName()?></dt>
+				<dd>
+					<ul>
+						<?php $methodCount = count($vendor['shipping_methods']); foreach($vendor['shipping_methods'] as $r):?>
+							<?php $r->setCode('v'.$vendor['vendor']->getId().'_'.$r->getCarrier().'_'.$r->getMethod())?>
+							<li>
+								
+								<input <?php //echo $methodCount == 1? 'style="display:none"' : ''?> <?php if(in_array($r->getCode(),$selectedShippings)) echo 'checked="checked"'?> vendor_id="<?php echo $vendor['vendor']->getId()?>" id="s_method_<?php echo $r->getCode() ?>" name="shipping_method_by_vendor[<?php echo $vendor['vendor']->getId()?>]" type="radio" value="<?php echo $r->getCode() ?>" class="validate-one-required-by-name radio shipping_method_by_vendor"/>
+								<label for="s_method_<?php echo $r->getCode() ?>"><?php echo $r->getCarrierTitle().' - '. $r->getMethodTitle() ?>
+								<?php $_excl = $this->getShippingPrice($r->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+								<?php $_incl = $this->getShippingPrice($r->getPrice(), true); ?>
+								<?php echo $_excl; ?>
+								<?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+									(<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+								<?php endif; ?>
+								</label>
+								<?php echo $r->getMethodDescription()?>
+							</li>
+						<?php endforeach;?>
+					</ul>
+				</dd>
+				<?php endforeach;?>
+				<input name="shipping_method" id="shipping_method" type="hidden" value="<?php echo $selectedShipping ?>"/>
+				<script type="text/javascript">
+					if(typeof(shippingMethod) !='undefined'){
+						shippingMethod.validate = function() {
+							var methods = document.getElementsByName('shipping_method');
+							if(!this.validator.validate()) {
+								return false;
+							}
+							
+							return true;
+						}
+					}
+					function preSelectShippingMethod(){
+						var selectedShippingMethod = '<?php echo $selectedShipping?>';
+						if(selectedShippingMethod !="" ){
+							selectedShippingMethod = selectedShippingMethod.replace('dropshipping_','');
+							selectedShippingMethods = selectedShippingMethod.split('|');
+							for(var i=0; i< selectedShippingMethods.length ; i++){
+								var shippingMethod = selectedShippingMethods[i];
+								var result = shippingMethod.split('_');
+								var vendor = result[0].replace('v','');
+								shippingVendor[vendor] = selectedShippingMethods[i];
+							}
+						}
+					}
+					
+					<?php if(Mage::getStoreConfig('onestepcheckout/general/rewrite_checkout_links')):?>
+							onestepcheckoutSaveShippingUrl = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
+
+							//$$('input.shipping_method_by_vendor').invoke('observe', 'click', onestepcheckout_get_separate_save_methods_function(onestepcheckoutSaveShippingUrl, false));
+							
+							function onestepcheckout_get_separate_save_methods_function(url, update_payments)
+							{
+								if(typeof update_payments == 'undefined')    {
+									var update_payments = false;
+								}
+
+								//return function(e)    {
+									if(typeof e != 'undefined')    {
+										var element = e.element();
+
+										if(element.name != 'shipping_method')    {
+											update_payments = false;
+										}            
+									}
+
+									var form = $('onestepcheckout-form');
+									var shipping_method = $('shipping_method').getValue();
+									var payment_method = $RF(form, 'payment[method]');
+									var totals = get_totals_element();
+									
+									totals.update('<div class="loading-ajax">&nbsp;</div>');
+
+									if(update_payments)    {
+										var payment_methods = $$('div.payment-methods')[0];
+										payment_methods.update('<div class="loading-ajax">&nbsp;</div>');
+									}
+
+									var parameters = {
+											shipping_method: shipping_method,
+											payment_method: payment_method
+									}
+
+									/* Find payment parameters and include */
+									var items = $$('input[name^=payment]', 'select[name^=payment]');
+									var names = items.pluck('name');
+									var values = items.pluck('value');
+
+									for(var x=0; x < names.length; x++)    {
+										if(names[x] != 'payment[method]')    {
+											parameters[names[x]] = values[x];    
+										}
+									}
+
+									new Ajax.Request(url, {
+										method: 'post',
+										onSuccess: function(transport)    {
+											if(transport.status == 200)    {
+												var data = transport.responseText.evalJSON();
+												var form = $('onestepcheckout-form');
+
+												totals.update(data.summary);
+
+												if(update_payments)    {
+
+													payment_methods.update(data.payment_method);
+
+													$$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', get_separate_save_methods_function(url));                            
+													$$('div.payment-methods input[name^=payment\[method\]]').invoke('observe', 'click', function() {
+														$$('div.onestepcheckout-payment-method-error').each(function(item) {
+															new Effect.Fade(item);
+														});
+													});                        
+
+													if($RF($('onestepcheckout-form'), 'payment[method]') != null)    {
+														try    {
+															var payment_method = $RF(form, 'payment[method]');
+															$('container_payment_method_' + payment_method).show();
+															$('payment_form_' + payment_method).show();
+														} catch(err)    {
+
+														}
+													}
+												}
+											}
+										},
+										parameters: parameters
+									});
+								//}
+							}
+							
+					<?php endif;?>
+					
+					//<![CDATA[
+					$$('input.shipping_method_by_vendor').each(function(el){
+						Event.observe(el, 'click', function(){
+							if (el.checked == true) {
+								var getShippingCode = el.getValue();
+								var vendorId = el.getAttribute('vendor_id');
+								shippingVendor[vendorId] = el.getValue();
+								var shippingSelector = 'dropshipping_';
+								var shippingSelected = [];
+								for(var v in shippingVendor){
+									shippingSelected.push(shippingVendor[v]);
+								}
+								shippingSelector += shippingSelected.join('|');
+								$('shipping_method').setValue(shippingSelector);
+								// fix for onestepcheckout extension
+								if(typeof(onestepcheckoutSaveShippingUrl) !='undefined'){
+									onestepcheckout_get_separate_save_methods_function(onestepcheckoutSaveShippingUrl, false);
+								}
+							}
+							
+						});
+					});
+					//]]>
+					preSelectShippingMethod();
+				</script>
+			<?php endif;?>
+		<?php endif;?>
+    <?php endforeach; ?>
+    </dl>
+<?php endif; ?>

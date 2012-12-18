@@ -1,0 +1,25 @@
+<?php
+/**
+ * Date: 11/17/12
+ * Time: 9:59 PM
+ */
+$helper = Mage::helper('customer')->getCustomer();
+$link = Mage::getBaseUrl();
+if ($helper->getData('customer_type') != 'vendor') {
+
+}
+else {
+?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Merchant Account') ?></h1>
+</div>
+<div class="vendor-access-page">
+    <span class="super-title">Access your merchant account here</span>
+    <a href="<?php echo $link.'admin' ?>" class="vendor-link">Merchant Account</a>
+
+   <div class="vendor-access-text">
+       <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('merchant_account_message')->toHtml(); ?>
+   </div>
+</div>
+<?php } ?>

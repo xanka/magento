@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <web_adminhtml_web_index>
+        <reference name="content">
+            <block type="web/adminhtml_web" name="web"/>
+        </reference>
+    </web_adminhtml_web_index>
+
+    <web_adminhtml_question_index>
+        <reference name="content">
+            <block type="web/adminhtml_question" name="question"/>
+        </reference>
+    </web_adminhtml_question_index>
+
+    <web_adminhtml_answer_index>
+        <reference name="content">
+            <block type="web/adminhtml_answer" name="answer"/>
+        </reference>
+    </web_adminhtml_answer_index>
+</layout>

@@ -1,0 +1,29 @@
+<?php
+/**
+ * Date: 10/19/12
+ * Time: 2:16 AM
+ */
+
+?>
+
+<!--<div id="product-bookmark">-->
+    <?php $currentUrl = $this->helper('core/url')->getCurrentUrl(); ?>
+    <div id="facebook-like" data-layout="button_count">
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="<?php echo $currentUrl ?>" show_faces="false" width="450" font="" data-layout="button_count"></fb:like>
+
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=344629968953237";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    </div>
+    <div id="twitter-like">
+<!--        <a href="http://twitter.com/share" data-count="vertical">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>-->
+<!--        <a href="https://twitter.com/share" class="twitter-share-button" data-via="PlanetV4">Tweet</a>-->
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+<!--</div>-->

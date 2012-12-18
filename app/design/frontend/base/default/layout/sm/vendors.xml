@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">	
+    <default>
+        <reference name="top.links">
+            <action method="addLink" translate="label title">
+                <label>Vendors</label>
+                <url helper="smvendors/getVendorListUrl" />
+                <title>View vendors list</title>
+                <prepare />
+                <urlParams />
+                <position>10</position>
+                <liParams />
+                <aParams>
+                    <class>tlink-vendors-list</class>
+                </aParams>
+            </action>
+            <!--<action method="addLink" translate="label title" module="smvendors"><label>Become to vendor</label><url helper="smvendors/getVendorRegisterUrl" /><title>Become to vendor</title><prepare/><urlParams/><position>100</position></action>-->
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/sm_vendors.css</stylesheet>
+            </action>            
+        </reference>        
+    </default>
+
+    <smvendors_index_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="left">
+            <!--<block type="smvendors/catalog_layer_view" name="smvendors.leftnav" after="currency" template="catalog/layer/view.phtml" />-->
+        </reference>
+        <reference name="content">
+            <block type="smvendors/catalog_product_list_new" name="vendor_product_new" template="catalog/product/list.phtml">
+                <block type="core/template" name="product_list_title" template="sm/vendors/catalog/product/list/title.phtml" />
+                <block type="core/template" name="product_customlists_dropdown" template="customlist/product/customlists_dropdown.phtml" />
+                <block type="core/template" name="product_customlists_dropdown_effect" template="customlist/product/customlists_dropdown_effect.phtml" />
+                <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                    <block type="page/html_pager" name="product_list_toolbar_pager" />
+                    <action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>9</limit><label>8</label>
+						</action>
+						<action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>12</limit><label>16</label>
+						</action>
+						<action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>24</limit><label>32</label>
+						</action>
+                        <action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>all</limit><label>All</label>
+						</action>
+						<action method="addPagerLimit" translate="label">
+							<mode>list</mode><limit>all</limit><label>All</label>
+						</action>
+                </block>
+                <action method="setToolbarBlockName">
+                    <name>product_list_toolbar</name>
+                </action>
+            </block>
+        </reference>
+    </smvendors_index_index>
+    
+    <smvendors_index_profile>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="left">		
+            <!--<block type="smvendors/catalog_layer_view" name="smvendors.leftnav" after="currency" template="catalog/layer/view.phtml" />-->
+        </reference>
+        <reference name="content">
+            <block type="smvendors/page_tabs" name="vendor_page_tabs" template="sm/vendors/page/tabs.phtml">
+                <block type="core/template" name="vendor_contact_form" template="sm/vendors/page/tabs/contact_form.phtml" />
+            </block>
+        </reference>
+    </smvendors_index_profile>    
+
+    <smvendors_list_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="smvendors/vendor_navigation" name="vendor_navigation" template="sm/vendors/page/navigation.phtml">
+                <action method="setTotalColumns">
+                    <totalColumns>4</totalColumns>
+                </action>
+            </block>
+        </reference>
+    </smvendors_list_index>
+
+    <smvendors_products_index>
+        <reference name="head">
+            <action method="addJs"><file>sm/planet/jQueryUI.js</file></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="smvendors/catalog_layer_view" name="smvendors.leftnav" after="currency" template="catalog/layer/view.phtml"/>
+            <block type="smvendors/page_category" name="catalog.listing" template="catalog/list.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="smvendors/catalog_category_view" name="categorysale.products" template="sm/vendors/catalog/product/vendor.phtml">
+                <block type="catalog/product_list" name="vendor_product_list" template="catalog/product/list.phtml">
+                    <block type="core/template" name="product_list_title" template="sm/vendors/catalog/product/list/title.phtml" />
+                    <block type="core/template" name="product_customlists_dropdown" template="customlist/product/customlists_dropdown.phtml" />
+                    <block type="core/template" name="product_customlists_dropdown_effect" template="customlist/product/customlists_dropdown_effect.phtml" />
+                    <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                        <block type="page/html_pager" name="product_list_toolbar_pager" />
+                        <action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>9</limit><label>8</label>
+						</action>
+						<action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>12</limit><label>16</label>
+						</action>
+						<action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>24</limit><label>32</label>
+						</action>
+                        <action method="addPagerLimit" translate="label">
+							<mode>grid</mode><limit>all</limit><label>All</label>
+						</action>
+						<action method="addPagerLimit" translate="label">
+							<mode>list</mode><limit>all</limit><label>All</label>
+						</action>
+                    </block>
+                    <action method="addColumnCountLayoutDepend">
+                        <layout>empty</layout>
+                        <count>6</count>
+                    </action>
+                    <action method="addColumnCountLayoutDepend">
+                        <layout>one_column</layout>
+                        <count>5</count>
+                    </action>
+                    <action method="addColumnCountLayoutDepend">
+                        <layout>two_columns_left</layout>
+                        <count>4</count>
+                    </action>
+                    <action method="addColumnCountLayoutDepend">
+                        <layout>two_columns_right</layout>
+                        <count>4</count>
+                    </action>
+                    <action method="addColumnCountLayoutDepend">
+                        <layout>three_columns</layout>
+                        <count>3</count>
+                    </action>
+                    <action method="setToolbarBlockName">
+                        <name>product_list_toolbar</name>
+                    </action>
+                </block>
+                <action method="setListCollection"/>
+            </block>
+        </reference>
+    </smvendors_products_index>
+
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <action method="removeItemRender">
+                <type>simple</type>
+            </action>
+            <action method="addItemRender">
+                <type>simple</type>
+                <block>checkout/cart_item_renderer</block>
+                <template>sm/vendors/checkout/cart/item/default.phtml</template>
+            </action>
+            <action method="removeItemRender">
+                <type>configurable</type>
+            </action>
+            <action method="addItemRender">
+                <type>configurable</type>
+                <block>checkout/cart_item_renderer_configurable</block>
+                <template>sm/vendors/checkout/cart/item/default.phtml</template>
+            </action>            
+        </reference>
+    </checkout_cart_index>
+    <customer_account_create>
+        <reference name="customer_form_register">
+            <action method="setTemplate">
+                <template>sm/vendors/customer/form/register.phtml</template>
+            </action>
+        </reference>
+    </customer_account_create>
+
+    <smvendors_account_create translate="label">
+        <label>Customer Account Registration Form</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="content">
+            <block type="customer/form_register" name="customer_form_register" template="sm/vendors/account/form/register.phtml">
+                <block type="page/html_wrapper" name="customer.form.register.fields.before" as="form_fields_before" translate="label">
+                    <label>Form Fields Before</label>
+                </block>
+            </block>
+        </reference>
+    </smvendors_account_create>
+
+        <!--<cms_index_index>-->
+            <!--<reference name="content">-->
+                <!--<block type="smvendors/vendor_featured" name="featured.vendor" template="sm/vendors/block/featured_vendors.phtml"/>-->
+            <!--</reference>-->
+        <!--</cms_index_index>-->
+
+    <customer_logged_in>
+        <!-- Removes 'Log Out' link - Default position: 60 -->
+        <reference name="top.links">
+            <action method="removeLinkByUrl"><url helper="smvendors/getVendorRegisterUrl"/></action>
+        </reference>
+    </customer_logged_in>
+</layout>

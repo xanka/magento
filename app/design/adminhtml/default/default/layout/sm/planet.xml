@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout>
+
+    <default>
+        <reference name="head">
+            <action method="addJs"><file>sm/planet/jquery-1.7.1.min.js</file></action>
+        </reference>
+    </default>
+    <adminhtml_partner_index>
+        <reference name="content">
+            <block type="planet/adminhtml_partner" name="exampleeee"/>
+        </reference>
+    </adminhtml_partner_index>
+
+    <adminhtml_partner_edit>
+        <reference name="content">
+            <block type="planet/adminhtml_partner_edit" name="example_edit"/>
+        </reference>
+    </adminhtml_partner_edit>
+</layout>

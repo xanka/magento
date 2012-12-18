@@ -1,0 +1,70 @@
+<?php 
+$vendorOrders = $this->getVendorOrders();?>
+<?php $_order = $this->getOrder();?>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table">
+    <tr>
+        <th>Vendor Order No</th>
+        <th>Vendor</th>
+        <th>Product Name</th>
+        <th>SKU</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Subtotal</th>
+    </tr>
+    <?php foreach ($vendorOrders as $vendorOrder):?>
+        <?php
+            $this->setVendorOrder($vendorOrder);
+            $vendor = $vendorOrder->getVendor();
+            $customerModel = $vendor->getCustomerModel();
+            $telephone = '';
+            if($billingAddress = $customerModel->getDefaultBillingAddress()) {
+                $telephone =  $billingAddress->getTelephone();
+            }
+            
+            $items = $vendorOrder->getAllVendorItems();
+            if($items instanceof Varien_Data_Collection) {
+                $items = $items->getItems();
+                $firstItem = reset($items);
+                if($firstItem->getParentItem()) $firstItem = next($items);
+            }
+            $rowspan = count($items);
+        ?>
+        <tr>
+            <td rowspan="<?php echo $rowspan?>"><?php echo $vendorOrder->getIncrementId()?></td>
+            <td rowspan="<?php echo $rowspan?>">
+                <a href="<?php echo $vendor->getVendorUrl()?>" class="brand"><?php echo $vendor->getVendorName()?></a><br/>
+                <span class="small"><?php if($telephone):?>ph: <?php echo $telephone?><br/><?php endif;?>
+                <a href="mailto:<?php echo $vendor->getEmail()?>"><?php echo $vendor->getEmail()?></a></span>
+            </td>
+            <td><?php echo ($firstItem) ? $firstItem->getName() : ''?></td>
+            <td><?php echo ($firstItem) ? $firstItem->getSku() : ''?></td>
+            <td align="center"><?php echo ($firstItem) ? number_format($firstItem->getQtyOrdered(), 0) : ''?></td>
+            <td align="right" style="padding:3px 9px"><?php echo ($firstItem) ? $_order->formatPrice($firstItem->getPrice()) : ''?></td>
+            <td align="right" style="padding:3px 9px"><?php echo ($firstItem) ? $_order->formatPrice($firstItem->getPrice() * $firstItem->getQtyOrdered()) : ''?></td>
+        </tr>
+        <?php $i=0; while ($nextItems = next($items)):?>
+            <?php if($nextItems->getParentItem()) continue; ?>
+            <tr <?php echo ($i % 2 === 0 ? 'class="even"' : '')?>>
+                <?php $i++;?>
+                <td><?php echo $nextItems->getName()?></td>
+                <td><?php echo $nextItems->getSku()?></td>
+                <td align="center"><?php echo number_format($nextItems->getQtyOrdered(), 0)?></td>
+                <td align="right" style="padding:3px 9px"><?php echo $_order->formatPrice($nextItems->getPrice())?></td>
+                <td align="right" style="padding:3px 9px"><?php echo $_order->formatPrice($nextItems->getPrice() * $nextItems->getQtyOrdered())?></td>
+            </tr>
+        <?php endwhile;?>
+        <tbody>
+            <?php echo $this->getChildHtml('order_totals', false);?>
+        </tbody>
+        <tr class="last">
+            <td colspan="7">&nbsp;</td>
+        </tr>    
+    <?php endforeach;?>
+    <?php /*if($vendorOrders->count() > 1):?>
+        <?php $this->setVendorOrder(null);?>
+        <tbody>
+            <?php echo $this->getChildHtml('order_totals', false);?>
+        </tbody>
+    <?php endif;*/?>
+</table>

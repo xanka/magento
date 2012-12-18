@@ -1,0 +1,23 @@
+<?php
+$_product    = $this->getProduct();
+$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+?>
+
+<?php if ($_product->isSaleable() && count($_attributes)):?>
+<dl>
+    <?php foreach($_attributes as $_attribute): ?>
+    <dt><label><em>*</em><?php echo $_attribute->getLabel() ?></label></dt>
+    <dd<?php if ($_attribute->decoratedIsLast){?><?php }?>>
+        <div>
+            <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select_<?php echo $_product->getId()?>">
+                <option><?php echo $this->__('Choose an Option...') ?></option>
+            </select>
+        </div>
+    </dd>
+    <?php endforeach; ?>
+</dl>
+
+<script type="text/javascript">
+    var spConfig_<?php echo $_product->getId()?> = new Inchoo_Product.Config(<?php echo $this->getJsonConfig() ?>);
+</script>
+<?php endif;?>

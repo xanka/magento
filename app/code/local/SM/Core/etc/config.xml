@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config> 
+    <modules> 
+        <SM_Core> 
+            <version>1.0</version> 
+        </SM_Core> 
+    </modules>
+     
+    <global> 
+        <models> 
+            <smcore> 
+                <class>SM_Core_Model</class>
+            </smcore>
+        </models>        
+        <helpers> 
+            <smcore> 
+                <class>SM_Core_Helper</class> 
+            </smcore> 
+        </helpers>       
+    </global>    
+    <adminhtml> 
+        <events>
+            <admin_system_config_changed_section_xpos>
+                <observers>
+                    <sm_core_init_service>
+                        <type>singleton</type>
+                        <class>smcore/observer</class>
+                        <method>refreshStatus</method>
+                    </sm_core_init_service>
+                </observers>
+            </admin_system_config_changed_section_xpos>
+        </events>         
+    </adminhtml>        
+</config>

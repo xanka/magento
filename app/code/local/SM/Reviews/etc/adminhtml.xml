@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <smvendors>
+            <children>
+                <smreviews translate="title" module="smreviews">
+                    <title>Customer Reviews</title>
+                    <action>adminhtml/vendors_reviews/index</action>
+                </smreviews>
+            </children>
+        </smvendors>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <smvendors>
+                        <children>
+                            <smreviews translate="title" module="smreviews">
+                                <title>Reviews and Ratings</title>
+                            </smreviews>
+                        </children>
+                    </smvendors>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

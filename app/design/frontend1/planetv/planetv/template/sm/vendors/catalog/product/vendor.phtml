@@ -1,0 +1,35 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php
+$_helper    = $this->helper('catalog/output');
+$_category  = $this->getCurrentCategory();
+$vendor = $this->getVendor();
+?>
+<?php //$topBanners = Mage::helper('smvendors/banner')->getVendorBannerPosition($vendor,'top');?>
+<?php //if(sizeof($topBanners) > 0):?>
+<?php //foreach($topBanners as $banner):?>
+<!--    <img style="width: --><?php //echo $banner->getWidth()?><!--; height:--><?php //echo $banner->getHeight() ?><!--" src="--><?php //echo $banner->getImageUrl()?><!--" />-->
+<!--    --><?php //endforeach;?>
+<?php //endif;?>
+<div class="page-title">
+    <h1>Merchant</h1>
+</div>
+<!--<div class="merchant-detail-top">-->
+<!--    <h1>Product Sold By  --><?php //echo $vendor->getName; ?><!--</h1>-->
+<!--    <p>--><?php //echo $vendor->getData('description') ?><!--</p>-->
+</div>
+<?php //$_imgUrl = Mage::helper('smvendors')->getVendorImage($vendor); ?>
+
+<!--<div class="category-title">-->
+<!--    --><?php //if ($_imgUrl): ?>
+<!--    <img src="--><?php //echo $_imgUrl ?><!--"  alt="--><?php //echo $vendor->getVendorName() ?><!--" width="200" />-->
+<!--    --><?php //endif; ?>
+<!--    <h1>--><?php //echo $vendor->getVendorName() ?><!--</h1>-->
+<!--</div>-->
+
+<?php echo $this->getProductListHtml() ?>
+<?php $bottomBanners = Mage::helper('smvendors/banner')->getVendorBannerPosition($vendor,'bottom');?>
+<?php if(sizeof($bottomBanners) > 0):?>
+<?php foreach($bottomBanners as $banner):?>
+    <img style="width: <?php echo $banner->getWidth()?>px; height:<?php echo $banner->getHeight() ?>px;" src="<?php echo $banner->getImageUrl()?>" />
+    <?php endforeach;?>
+<?php endif;?>

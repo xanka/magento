@@ -1,0 +1,71 @@
+<!--@subject {{var store.getFrontendName()}}: Credit Memo # {{var creditmemo.increment_id}} for Order # {{var vendor_order.increment_id}} @-->
+<!--@vars
+{}
+@-->
+<!--@styles
+{{block type="core/template" template="sm/email/order/styles.phtml"}}
+@-->
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+    <tr>
+        <td align="center"><table cellspacing="0" cellpadding="0" border="0" width="700" 
+            style="text-align:left">
+            <tr>
+                <td colspan="2" style="height:5px;background:#2897d4;font-size:0">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    {{block type="core/template" template="sm/email/order/email_logo.phtml" vendor=$vendor}}
+                    <br/>
+                    {{block type="core/template" template="sm/email/order/vendor_info.phtml" vendor=$vendor}}
+                </td>
+                <td align="right" style="padding-top:20px;">
+                    <table cellpadding="0" cellspacing="0" 
+                        border="0" width="250" style="text-align:left">
+                        <tr>
+                            <td>Creditmemo no</td>
+                            <td>:&nbsp;&nbsp; {{var creditmemo.increment_id}}</td>
+                        </tr>
+                        <tr>
+                            <td>Order no</td>
+                            <td>:&nbsp;&nbsp; {{var vendor_order.increment_id}}</td>
+                        </tr>
+                        <tr><td colspan="2" style="height: 10px;"></td></tr>
+                        
+                        {{block type="core/template" template="sm/email/order/buyer_info.phtml" order=$order output_shipping=true}}
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" valign="top" style="background:#dddddd url({{skin url="images/email/email_title.jpg" _area='frontend'}}) no-repeat;height:49px;">
+                <h3 style="padding:10px 20px;margin:0;color:#000;text-transform:uppercase;font-size:16px;">Creditmemo</h3></td>
+            </tr>
+            <tr>
+                <td colspan="2"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding-left:10px;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td style="padding-left:10px;padding-bottom:30px">
+                                    <h4>Hello, {{htmlescape var=$order.getCustomerFirstname()}}</h4>
+                                    <p style="margin:10px 0;padding:0">
+                                    If you have any problems with your order, 
+                                    please contact us at <a href="mailto:{{var vendor.email}}">{{var vendor.email}}</a>.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-bottom:10px;">
+                                    <br/>
+			                    {{layout handle="sales_email_order_creditmemo_items" creditmemo=$creditmemo order=$order payment_html=$payment_html}}
+			                    <p style="font-size:12px; margin:0 10px 10px 0">{{var comment}}</p>
+                                </td>
+                            </tr>
+                            {{block type="core/template" template="sm/email/order/footer.phtml"}}
+                        </table></td>
+                        <td valign="top" align="right"><img src="{{skin url="images/email/email_bgtitle.jpg" _area='frontend'}}" width="11" height="23" style="display:block"/></td>
+                    </tr>
+                </table></td>
+            </tr>
+        </table></td>
+    </tr>
+</table>
+</body>

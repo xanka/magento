@@ -1,0 +1,36 @@
+<?php
+/**
+ * Date: 10/25/12
+ * Time: 9:10 PM
+ */
+
+$pages = $this->getPage();
+$pageImage = $this->getPageImage();
+$home = Mage::helper('core/url')->getHomeUrl();
+$helper = Mage::helper('planet');
+
+
+?>
+
+<div class="page-title">
+    <h1>Community</h1>
+</div>
+
+<div id="top-category" class="clearfix">
+    <ul>
+        <li>
+            <?php foreach($pages as $_page): ?>
+            <div class="cat-item">
+                <div class="cat-image">
+<!--                    --><?php //$image = $helper->resizeImg($pageImage[$_page],170,170) ?>
+                    <a href="<?php echo $home.$_page ?>" accesskey=""><img src="<?php echo $pageImage[$_page] ?>" /></a>
+                </div>
+                <h3 class="cat-name">
+                    <a href="<?php echo $home.$_page ?>"><?php echo Mage::getModel('cms/page')->load($_page)->getData('title') ?></a>
+                </h3>
+            </div>
+            <?php endforeach ?>
+        </li>
+    </ul>
+</div>
+

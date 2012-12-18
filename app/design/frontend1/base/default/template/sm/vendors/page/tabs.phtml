@@ -1,0 +1,32 @@
+<?php
+$_smhelper = Mage::helper('smvendors');
+$pages = $this->getAllPages();
+$vendor = $this->getCurrentVendor();
+$this->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true));
+?>
+<div id="messages_product_view">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+<?php if (!empty($pages)): ?>
+    <div class="tab-font">
+        <div class="vendor-logo">
+            <?php if (Mage::helper('smvendors')->getVendorImage($vendor)): ?>
+                <img src="<?php echo Mage::helper('smvendors')->getVendorImage($vendor) ?>" alt="<?php echo $vendor->getVendorName() ?>" width="200" />
+            <?php endif; ?>
+            <h1><?php echo $vendor->getVendorName() ?></h1>
+        </div>
+        <div class="profiles">
+            <?php $index = 1;
+            foreach ($pages as $page): ?>
+                <div id="profiles_tabs_<?php echo $index ?>" >
+                    <h3><?php echo $page->getTitle(); ?></h3>
+                    <p><?php echo $page->getContent(); ?></p>
+                </div>
+        <?php $index++;
+    endforeach; ?>   
+            <div id="profiles_products" >
+                <h3><a href="<?php echo Mage::getUrl('vendor/products/index', array('id' => $vendor->getId())) ?>"><?php echo $this->__('Products from this vendor') ?><a/></h3>
+            </div>            
+        </div>
+    </div>
+<?php endif; ?>

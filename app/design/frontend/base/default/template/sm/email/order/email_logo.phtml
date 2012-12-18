@@ -1,0 +1,11 @@
+<?php
+$vendor = $this->getVendor();
+if($vendor && $vendor->getVendorLogoUrl()):
+?>
+<a href="<?php echo $vendor->getVendorLogoUrl()?>">
+    <img src="<?php echo $vendor->getVendorLogoUrl()?>" 
+        height="100" alt="<?php echo $vendor->getVendorName()?>" style="display:block;"/>
+</a>
+<?php else:?>
+<!-- default logo -->
+<?php endif;?>

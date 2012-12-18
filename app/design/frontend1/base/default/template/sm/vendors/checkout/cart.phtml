@@ -1,0 +1,171 @@
+<div class="cart">
+	<div class="page-title">
+		<h1><?php echo $this->__('Shopping Cart') ?><span></span></h1>
+	</div>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<?php echo $this->getChildHtml('form_before') ?>
+	<form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post" id="cartForm">
+		<fieldset>
+			<table id="shopping-cart-table" class="data-table cart-table">
+				<col width="13%" />
+				
+				<col width="6%" />
+				<col width="6%" />
+				<col width="37%" />
+			<?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+				<col width="6%" />
+			<?php endif; ?>
+			<?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+				<col width="8%" />
+			<?php endif; ?>
+			<?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+				<col width="8%" />
+			<?php endif; ?>
+			<?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+				<col width="10%" />
+			<?php endif; ?>
+				<col width="10%" />
+
+			<?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+				<thead>
+					<tr>
+						<th rowspan="<?php echo $mergedCells; ?>" colspan="2">&nbsp;</th>
+						
+						<th>&nbsp;</th>
+						<th rowspan="<?php echo $mergedCells; ?>" class="a-left"><?php echo $this->__('Product') ?></th>
+						<th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Qty.') ?></th>
+						<th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Price') ?></th>
+						<th class="a-center" colspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+					</tr>
+					<?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+					<tr>
+						<th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+						<th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+						<th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+						<th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+					</tr>
+					<?php endif; ?>
+				</thead>
+				<tfoot>
+					<tr>
+						<td colspan="50" class="a-right">
+							<?php if($this->getContinueShoppingUrl()): ?>
+								<button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+							<?php endif; ?>
+							<button type="submit" title="<?php echo $this->__('Update Shopping Cart') ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart') ?></span></span></button>
+						</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<?php foreach($this->getVendorItems() as $vendorId => $items): ?>
+						<?php $i = 0; 
+						foreach ($items as $item):
+							$i++; ?>
+							<tr <?php if ($i == 1): ?>class="first-row-span"<?php endif; ?>>
+								<?php if ($i == 1): ?>
+								<td rowspan="<?php echo count($items) ?>">
+									<?php echo $this->getVendor($vendorId)->getVendorName() ?>
+									<?php if($this->getVendor($vendorId)->getVendorLogoUrl()):?>
+										<br/>
+										<img src="<?php echo $this->getVendor($vendorId)->getVendorLogoUrl() ?>" style="width:100px" />
+									<?php endif;?>
+									<div style="display: none"><?php echo $this->getDropShippingHtml($vendorId)?></div>
+								</td>					
+								<?php endif;?>
+								<?php echo $this->getItemHtml($item) ?>
+							</tr>
+						<?php endforeach ?>
+						<tr>
+							<td colspan="50">
+								<div style="float: right;text-align:right">
+									<?php $vendorTotals = $this->getVendorTotals($vendorId) ?>
+									<b><?php echo $this->__('Delivery cost') ?>:&nbsp;&nbsp;</b><?php echo $this->helper('checkout')->formatPrice($vendorTotals['shipping_price'])?><br/>
+									<b><?php echo $this->__('VAT')?>:&nbsp;&nbsp;</b><?php echo $this->helper('checkout')->formatPrice($vendorTotals['tax'])?><br/>
+									<b><?php echo $this->__('Subtotal')?>:&nbsp;&nbsp;</b><?php echo $this->helper('checkout')->formatPrice($vendorTotals['subtotal'])?><br/>
+								</div>
+							</td>
+						</tr>
+					<?php endforeach ?>
+				</tbody>
+			</table>
+			<input type="hidden" value="" name="shipping_method" id="shipping_method" />
+			<script type="text/javascript">decorateTable('shopping-cart-table')</script>
+		</fieldset>
+	</form>
+	<div class="cart-collaterals">
+		<div class="col2-set">
+			<div class="col-1">
+				<?php echo $this->getChildHtml('crosssell') ?>
+			</div>
+			<div class="col-2">
+				<?php echo $this->getChildHtml('coupon') ?>
+				<?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+			</div>
+		</div>
+		<div class="totals">
+			<?php echo $this->getChildHtml('totals'); ?>
+			<?php if(!$this->hasError()): ?>
+			<ul class="checkout-types">
+			<?php foreach ($this->getMethods('methods') as $method): ?>
+				<?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+				<li><?php echo $methodHtml; ?></li>
+				<?php endif; ?>
+			<?php endforeach; ?>
+			</ul>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<script>
+	DropShip = Class.create({
+		initialize: function(shippingConfig,selector) {
+			this.shippingConfig = shippingConfig;
+			this.selector = selector;
+			this.selectElements = $$(this.selector);
+			// Put events to check select reloads 
+			this.selectElements.each(function(element){
+				var vendorId = $(element).getAttribute('vendor_id');
+				element.priceSelector = 'shipping_method_price_vendor_'+vendorId;
+				Event.observe(element, 'change', this.changeShipping.bind(this));
+			}.bind(this));
+			this.preSelectShipping();
+		},
+
+		changeShipping: function(e) {
+			var element = Event.element(e);
+			var vendorId = $(element).getAttribute('vendor_id');
+			var shippingCode = element.value;
+			$(element.priceSelector).update(this.shippingConfig['shipping_methods_by_vendor'][vendorId][shippingCode]['price_format']);
+			this.updateSelectedShipping();
+		},
+		
+		preSelectShipping:function(){
+			var selectedShippingMethod = this.shippingConfig.selected_shipping;
+			if(selectedShippingMethod !="" ){
+				selectedShippingMethod = selectedShippingMethod.replace('dropshipping_','');
+				selectedShippingMethods = selectedShippingMethod.split('|');
+				for(var i=0; i< selectedShippingMethods.length ; i++){
+					var shippingMethod = selectedShippingMethods[i];
+					var result = shippingMethod.split('_');
+					var vendor = result[0];
+					$('shipping_method_'+vendor).setValue(selectedShippingMethods[i]);
+					var vendorId = $('shipping_method_'+vendor).getAttribute('vendor_id');
+					var shippingCode = selectedShippingMethods[i];
+					$($('shipping_method_'+vendor).priceSelector).update(this.shippingConfig['shipping_methods_by_vendor'][vendorId][shippingCode]['price_format']);
+				}
+				this.updateSelectedShipping();
+			}
+		},
+		updateSelectedShipping : function(){
+			var shippingSelected = [];
+			for(var i in this.shippingConfig['shipping_methods_by_vendor']){
+				var vendor = i;
+				var value = $('shipping_method_v'+vendor).getValue();
+				shippingSelected.push(value);
+			}
+			shippingMethod = 'dropshipping_'+shippingSelected.join('|');
+			$('shipping_method').setValue(shippingMethod);
+		}
+	});
+	dropShip = new DropShip(<?php echo $this->getShippingConfigToJson()?>,'select.shipping_method_by_vendor');
+</script>

@@ -1,0 +1,61 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Admin
+ * Date: 10/11/12
+ * Time: 12:46 AM
+ * To change this template use File | Settings | File Templates.
+ */
+$currentCat = Mage::getModel('catalog/layer')->getCurrentCategory();
+$vendor = Mage::registry('current_vendor');
+if (is_null($vendor)) {
+    $vendor = Mage::getSingleton('core/session')->getData('current_vendor');
+}
+$html = '';
+if (!is_null($vendor)) {
+    $_filters = $this->getLayout()->createBlock('smvendors/catalog_layer_view')->getFilters();
+    foreach ($_filters as $_filter) {
+        if($_filter->getItemsCount()) {
+            $html = $_filter->getHtml();
+            break;
+        }
+    }
+    Mage::getSingleton('core/session')->setData('vendor_category',$html);
+
+}
+
+
+
+?>
+
+<?php //$this->getCategoryName(); ?>
+<div id="left-col">
+    <?php $_helper = Mage::helper('catalog/category') ?>
+    <?php $_categories = $_helper->getStoreCategories() ?>
+    <?php $currentCategory = Mage::registry('current_category') ?>
+    <?php if (count($_categories) > 0): ?>
+    <ul>
+        <?php if ($html && $vendor): ?>
+        <?php echo $html; ?>
+        <?php else: ?>
+        <?php foreach($_categories as $_category): ?>
+        <?php if ($_category->getName() == 'marketplace') continue; ?>
+        <li <?php if ($currentCategory && ($currentCategory->getId() == $_category->getId() || $currentCategory->getData('parent_id') == $_category->getId() )): ?> class="selected" <?php endif ?>>
+            <a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
+                <?php echo $_category->getName() ?>
+            </a>
+            <?php if ($currentCategory && $currentCategory->getId() == $_category->getId()): ?>
+            <?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+        <?php endif ?>
+    </ul>
+    <?php endif; ?>
+</div>
+<!--    remove number of product in category-->
+
+    <script type="text/javascript" >
+       jQuery('#left-col').html(jQuery('#left-col').html().replace(/\([0-9]*\)+/g,""))
+    </script>
+

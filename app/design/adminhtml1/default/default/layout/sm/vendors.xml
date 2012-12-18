@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs">
+                <script>sm/vendors/validate.js</script>
+            </action>
+        </reference>
+    </default>
+
+    <adminhtml_vendors_index>
+        <reference name="content">
+            <block type="smvendors/adminhtml_vendor" name="vendor" />
+        </reference>
+    </adminhtml_vendors_index>
+	
+    <adminhtml_vendors_edit>
+        <reference name="content">
+            <block type="smvendors/adminhtml_vendor_edit" name="customer_edit"></block>
+        </reference>
+        <reference name="head">
+            <block type="adminhtml/template" name="optional_zip_countries" as="optional_zip_countries" template="directory/js/optional_zip_countries.phtml" />
+            <action method="addItem">
+                <type>js_css</type>
+                <name>extjs/resources/css/ext-all.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/magento.css</name>
+            </action>
+            <action method="addJs">
+                <file>extjs/ext-tree.js</file>
+            </action>
+            <action method="addJs">
+                <file>extjs/fix-defer.js</file>
+            </action>
+            <action method="addJs">
+                <file>extjs/ext-tree-checkbox.js</file>
+            </action>
+            <action method="addJs">
+                <file>mage/adminhtml/product/composite/configure.js</file>
+            </action>
+            <action method="addJs">
+                <file>varien/configurable.js</file>
+            </action>
+            <action method="addJs">
+                <file>tiny_mce/tiny_mce.js</file>
+            </action>
+            <action method="addJs">
+                <file>mage/adminhtml/wysiwyg/tiny_mce/setup.js</file>
+            </action>
+            <action method="addJs">
+                <file>mage/adminhtml/variables.js</file>
+            </action>
+            <action method="addJs">
+                <file>mage/adminhtml/wysiwyg/widget.js</file>
+            </action>
+            <action method="addJs">
+                <file>lib/flex.js</file>
+            </action>
+            <action method="addJs">
+                <file>lib/FABridge.js</file>
+            </action>
+            <action method="addJs">
+                <file>mage/adminhtml/flexuploader.js</file>
+            </action>
+            <action method="addJs">
+                <file>mage/adminhtml/browser.js</file>
+            </action>
+			
+        </reference>
+        <reference name="left">
+            <block type="smvendors/adminhtml_vendor_edit_tabs" name="customer_edit_tabs">
+				<!--
+                <block type="adminhtml/customer_edit_tab_view" name="customer_edit_tab_view" template="customer/tab/view.phtml">
+                    <block type="adminhtml/customer_edit_tab_view_sales" name="sales" template="customer/tab/view/sales.phtml" before="-" />
+                    <block type="adminhtml/customer_edit_tab_view_accordion" name="accordion" />
+                </block>
+                <action method="addTab"><name>customer_edit_tab_view</name><block>customer_edit_tab_view</block></action>
+				-->
+            </block>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/template" template="customer/edit/js.phtml" name="customer.edit.js" as="customer_edit_js"></block>
+        </reference>
+    </adminhtml_vendors_edit>
+    <adminhtml_vendors_group_index>
+        <reference name="content">
+            <block type="adminhtml/customer_group" name="customer_group"></block>
+        </reference>
+    </adminhtml_vendors_group_index>
+	
+    <adminhtml_vendors_wishlist>
+        <block type="adminhtml/customer_edit_tab_wishlist" name="customer.wishlist.edit.tab" output="toHtml" />
+    </adminhtml_vendors_wishlist>
+	
+    <adminhtml_vendors_page_edit>
+        <update handle="editor"/>
+    </adminhtml_vendors_page_edit>
+	
+    <adminhtml_vendors_banner_edit>
+        <update handle="editor"/>
+    </adminhtml_vendors_banner_edit>
+	
+    <adminhtml_vendors_banner_new>
+        <update handle="editor"/>
+    </adminhtml_vendors_banner_new>
+    
+    <adminhtml_vendors_reports_vendororders>
+    	<!-- <reference name="content">
+    		<block type="smvendors/adminhtml_reports_ordersDelivery" name="smvendors_od" output="toHtml"/>
+    	</reference> -->
+        <update handle="report_sales"/>
+        <reference name="content">
+            <block type="smvendors/adminhtml_reports_vendorOrders" name="smvendors_od">
+                <block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName">
+                        <var_name>store_ids</var_name>
+                    </action>
+                </block>
+                <block type="smvendors/adminhtml_reports_filter_form" name="grid.filter.form" template="">
+                    <action method="addReportTypeOption" translate="value">
+                        <key>created_at_order</key>
+                        <value>Order Created Date</value>
+                    </action>
+                    <action method="addReportTypeOption" translate="value">
+                        <key>updated_at_order</key>
+                        <value>Order Updated Date</value>
+                    </action>
+                    <action method="setFieldOption" translate="value">
+                        <field>report_type</field>
+                        <option>note</option>
+                        <value>Order Updated Date report is real-time, does not need statistics refreshing.</value>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_vendors_reports_vendororders>
+
+    <adminhtml_report_sales_bestsellers>
+        <reference name="sales.report.grid.container">
+            <action method="unsetChild"><name>grid.filter.form</name></action>
+            <block type="smvendors/adminhtml_reports_filter_form" name="grid.filter.form">
+                <action method="setFieldVisibility">
+                    <field>report_type</field>
+                    <visibility>0</visibility>
+                </action>
+                <action method="setFieldVisibility">
+                    <field>show_order_statuses</field>
+                    <visibility>0</visibility>
+                </action>
+                <action method="setFieldVisibility">
+                    <field>order_statuses</field>
+                    <visibility>0</visibility>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_report_sales_bestsellers>
+
+    <adminhtml_report_product_viewed>
+        <reference name="content">
+            <remove name="product.report.grid.container"/>
+        </reference>
+    </adminhtml_report_product_viewed>
+
+    <adminhtml_report_sales_refunded>
+        <reference name="sales.report.grid.container">
+            <!--<remove name="grid.filter.form"></remove>-->
+            <block type="smvendors/adminhtml_reports_filter_form" name="grid.filter.form">
+                                  <action method="addReportTypeOption" translate="value">
+                                      <key>created_at_order</key>
+                                      <value>Order Created Date</value>
+                                  </action>
+                                  <action method="addReportTypeOption" translate="value">
+                                      <key>created_at_refunded</key>
+                                      <value>Last Credit Memo Created Date</value>
+                                  </action>
+            </block>
+        </reference>
+    </adminhtml_report_sales_refunded>
+
+    <adminhtml_report_sales_invoiced>
+        <reference name="sales.report.grid.container">
+            <!--<remove name="grid.filter.form"></remove>-->
+            <block type="smvendors/adminhtml_reports_filter_form" name="grid.filter.form">
+                                <action method="addReportTypeOption" translate="value">
+                <key>created_at_order</key>
+                <value>Order Created Date</value>
+            </action>
+                <action method="addReportTypeOption" translate="value">
+                    <key>created_at_invoice</key>
+                    <value>Last Invoice Created Date</value>
+                </action>  
+            </block>
+        </reference>
+    </adminhtml_report_sales_invoiced>
+
+    <adminhtml_report_sales_tax>
+        <reference name="sales.report.grid.container">
+            <!--<remove name="grid.filter.form"></remove>-->
+            <block type="smvendors/adminhtml_reports_filter_form" name="grid.filter.form">
+                <action method="addReportTypeOption" translate="value">
+                    <key>created_at_order</key>
+                    <value>Order Created Date</value>
+                </action>
+                <action method="addReportTypeOption" translate="value">
+                    <key>updated_at_order</key>
+                    <value>Order Updated Date</value>
+                </action>
+                <action method="setFieldOption" translate="value">
+                    <field>report_type</field>
+                    <option>note</option>
+                    <value>Order Updated Date report is real-time, does not need statistics refreshing.</value>
+                </action>                 
+            </block>
+        </reference>
+    </adminhtml_report_sales_tax>
+
+    <adminhtml_report_sales_shipping>
+        <reference name="sales.report.grid.container">
+            <!--<remove name="grid.filter.form"></remove>-->
+            <block type="smvendors/adminhtml_reports_filter_form" name="grid.filter.form">
+                                <action method="addReportTypeOption" translate="value">
+                <key>created_at_order</key>
+                <value>Order Created Date</value>
+            </action>
+                <action method="addReportTypeOption" translate="value">
+                    <key>created_at_invoice</key>
+                    <value>Last Shipping Created Date</value>
+                </action>  
+            </block>
+        </reference>
+    </adminhtml_report_sales_shipping>
+    
+	<!--
+	<adminhtml_sales_order_create_load_block_shipping_method>
+        <reference name="content">
+            <block type="adminhtml/sales_order_create_shipping_method" template="sales/order/create/abstract.phtml" name="shipping_method">
+                <block type="adminhtml/sales_order_create_shipping_method_form" template="sales/order/create/shipping/method/form.phtml" name="form" />
+            </block>
+        </reference>
+    </adminhtml_sales_order_create_load_block_shipping_method>
+	-->
+</layout>

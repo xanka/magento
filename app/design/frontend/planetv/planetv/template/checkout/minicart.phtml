@@ -1,0 +1,83 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Admin
+ * Date: 10/14/12
+ * Time: 2:37 AM
+ * To change this template use File | Settings | File Templates.
+ */
+$session = Mage::getSingleton('customer/session');
+if (!is_null(Mage::registry('current_category'))) {
+    $session->setData('current_category_v',Mage::registry('current_category'));
+}
+
+
+$helper = Mage::helper('checkout/cart');
+$url = Mage::helper('checkout/url');
+$quote = $quote = Mage::getSingleton('checkout/session')->getQuote();
+$cartItems = $quote->getAllVisibleItems();
+
+$symboy = Mage::app()->getLocale()->currency(Mage::app()->getStore()->
+    getCurrentCurrencyCode())->getSymbol()
+?>
+
+<?php if(count($cartItems)>0): ?>
+    <div id="minicart" class="clearfix" style="display: none;"><div class="mini-top">&nbsp;</div>
+	  <div class="mini-mid">
+	  <div class="minicart-inner">
+        <table width="100%">
+            <?php foreach($cartItems as $item): ?>
+
+            <?php $_product = Mage::getModel('catalog/product')->load($item->getData('product_id')) ?>
+			<tr>
+				<td class="v-center">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                        <img id="<?php echo $_product->getId(); ?>" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(60); ?>" width="60" height="60" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                    </a>
+				</td>
+				<td class="v-center"><h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" ><?php echo $item->getData('name') ?></a></h3></td>
+				<td class="v-center">
+					<p><?php echo $item->getData('qty') ?></p>
+					<p><span id="cart-price"><strong><?php echo Mage::helper('core')->currency( $item->getData('price')) ?></strong></span></p>
+				</td>
+
+				<td class="v-center"><a class="btn-remove btn-remove2" href="<?php echo $helper->getRemoveUrl($item) ?>">Remove</a> </td>
+			</tr>
+            <?php endforeach; ?>
+        </table>
+	  </div>
+		<div class="minicart-bottom">
+			<span id="cart-edit" class="btn-minicart cartedit"><a href="<?php echo $url->getCartUrl() ?>">Edit</a></span>
+			<span id="cart-checkout" class="btn-minicart cartcheckout"><a href="<?php echo $url->getCheckoutUrl() ?>">Checkout</a></span>
+		</div>
+	</div>
+	<div class="mini-bot">&nbsp;</div>
+    </div>
+<?php endif; ?>
+
+
+<script type="text/javascript" >
+//    jQuery('.link-basket').mouseover(
+//            function () {
+//                jQuery('#minicart').show();
+//            }
+//    )
+
+    jQuery('#minicart').add('.link-basket').mouseover(
+            function() {
+                jQuery('#minicart').show()
+            }
+    ).mouseout(
+            function() {
+                jQuery('#minicart').hide();
+            }
+    )
+
+
+//    jQuery('#minicart').mouseover(
+//            function () {
+//                alert('a');
+//                jQuery('#minicart').css({'display':'none'});
+//            }
+//    )
+</script>

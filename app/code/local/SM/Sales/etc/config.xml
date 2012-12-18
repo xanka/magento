@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_Sales>
+            <version>0.1.0</version>
+        </SM_Sales>
+    </modules>
+    <global>
+		<!--rewrite>
+			<sm_sales_order>
+				<from><![CDATA[#^/order/#]]></from>
+				<to><![CDATA[#^/order/history#]]></to>
+			</sm_sales_order>
+		</rewrite-->
+        <blocks>
+            <sales>
+                <rewrite>
+                    <order_history>SM_Sales_Block_Order_History</order_history>
+                </rewrite>
+                <rewrite>
+                    <order_invoice_history>SM_Sales_Block_Order_Invoice_History</order_invoice_history>
+                </rewrite>
+                <rewrite>
+                    <order_print_invoices>SM_Sales_Block_Order_Print_Invoices</order_print_invoices>
+                </rewrite>
+                <rewrite>
+                    <order_print_orders>SM_Sales_Block_Order_Print_Orders</order_print_orders>
+                </rewrite>
+            </sales>
+            <smsales>
+                <class>SM_Sales_Block</class>
+            </smsales>
+        </blocks>
+		
+        <helpers>
+            <smsales>
+                <class>SM_Sales_Helper</class>
+            </smsales>
+        </helpers>
+    </global>
+	
+    <frontend>
+        <routers>
+            <sm_sales>
+                <use>standard</use>
+                <args>
+                    <module>SM_Sales</module>
+                    <frontName>sales</frontName>
+                </args>
+            </sm_sales>
+        </routers>
+    </frontend>	
+</config>

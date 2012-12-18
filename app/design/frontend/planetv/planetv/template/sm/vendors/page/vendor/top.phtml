@@ -1,0 +1,104 @@
+<?php
+/**
+ * Date: 11/9/12
+ * Time: 3:44 AM
+ */
+$vendor = Mage::registry('current_vendor');
+$pages = $this->getLayout()->createBlock('smvendors/page_tabs')->getAllPages();
+$totalPage = count($pages);
+$totalSize = 567;
+$sizePerPage = intval($totalSize / $totalPage);
+$homeurl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
+$helper = Mage::helper('smvendors');
+$vendorImage = $helper->getVendorImage($vendor);
+$resizedImageUrl = $helper->getVendorResizedLogo($vendorImage, 121, 142, 'vendor', 'view');
+?>
+
+<div id="vendor-top">
+    <div class="clearfix" style="margin-bottom: 10px; margin-left: 10px;">
+        <table width="100%" border="0" id="vendor-left1">
+            <tr>
+                <td><h1><?php echo $vendor->getData('vendor_name') ?></h1><?php if ($vendor->getData('vendor_is_vendor_vegan_society_approve') == 1): ?><span class="vendor-logo-small"><img src="<?php echo $homeurl ?>/frontend/planetv/planetv/images/veg_logo_s.png" /></span><?php endif ?><?php if ($vendor->getData('is_vendor_vegan_society') == 1): ?><span class="vendor-logo-small"><img src="<?php echo $homeurl ?>/frontend/planetv/planetv/images/veg_logo_registed.png" /></span><?php endif ?></td>
+
+                <td class="text-vendor"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="vendor-left">
+        <div class="vendor-logo-large"><img src="<?php echo $resizedImageUrl; ?>" /></div>
+    </div>
+    <?php $count = 1; ?>
+    <div id="vendor-right">
+        <div id="vendor-page">
+            <ul>
+                <?php if ($vendor->getData('description')): ?>
+                    <li class="li-tab"><a href="#page-tab-our-company"><?php echo $this->__('Our Company') ?></a></li>
+                <?php endif; ?>
+                <?php if ($vendor->getData('delivery_page')): ?>
+                    <li class="li-tab"><a href="#page-tab-delivery-page"><?php echo $this->__('Delivery') ?></a></li>
+                <?php endif; ?>
+                <?php if ($vendor->getData('return_page')): ?>
+                    <li class="li-tab"><a href="#page-tab-return-page"><?php echo $this->__('Return') ?></a></li>
+                <?php endif; ?>
+                <li class="li-tab-last"><a href="#page-tab-contact"><?php echo $this->__('Contact Us') ?></a></li>
+            </ul>
+            <?php if ($vendor->getData('description')): ?>
+                <div id="page-tab-our-company" class="srolltab">
+                    <?php echo $vendor->getDescription() ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($vendor->getData('delivery_page')): ?>
+                <div id="page-tab-delivery-page" class="srolltab">
+                    <?php echo $vendor->getData('delivery_page'); ?>
+                    <br/>
+                    <?php if ($rateId = $vendor->getData('vendor_shipping_rate_free')): ?>
+                        <?php
+                        $rate = Mage::getModel('smdropship/shipping_multiflatrate')->load($rateId);
+                        ?>
+                        <label><?php echo $this->__('Free Delivery:') ?></label> <?php echo $rate->getTitle() ?>
+                    <?php endif; ?>
+                    <br/>
+                    <?php if ($rateIds = $vendor->getData('vendor_shipping_rate_nofree')): ?>
+                        <?php
+                        $rate = Mage::getModel('smdropship/shipping_multiflatrate')->load($rateId);
+                        $rateNoFrees = Mage::getResourceModel('smdropship/shipping_multiflatrate_collection')->addFieldToFilter('rate_id', array('in' => explode(',', $rateIds)));
+                        ?>
+                        <label><?php echo $this->__('Delivery Costs:') ?></label>
+                        <?php
+                        $count = 1;
+                        $rates = count($rateNoFrees);
+                        ?>
+                        <?php foreach ($rateNoFrees as $r): ?>
+                            <?php echo $r->getTitle() ?>
+                            <?php
+                            if ($count < $rates) {
+                                echo ', ';
+                            } else {
+                                echo '.';
+                            }
+                            $count++;
+                            ?>
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
+                </div>
+            <?php endif; ?>
+            <?php if ($vendor->getData('return_page')): ?>
+                <div id="page-tab-return-page" class="srolltab">
+                    <?php echo $vendor->getData('return_page') ?>
+                </div>
+            <?php endif; ?>
+            <div id="page-tab-contact" class="srolltab contactpage">
+                <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('planet/contacts/form.phtml')->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery('#vendor-page > ul').tabs();
+    jQuery('.ui-tabs-nav .li-tab').css({'width':'<?php echo intval($sizePerPage); ?>px'});
+    jQuery('.ui-tabs-nav .li-tab-last').css({'width':'<?php echo intval($totalSize - ($sizePerPage * ($totalPage - 1))); ?>px'});
+    jQuery('.page-title:eq(1)').hide();
+</script>

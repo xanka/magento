@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <smvendors module="smvendors">
+                        <children>
+                            <vendors_shipping_methods module="smdropship">
+                                <title>Shipping Methods</title>
+                                <sort_order>1</sort_order>
+                            </vendors_shipping_methods>
+                        </children>
+                    </smvendors>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <smvendors>
+            <children>
+                <vendors_shipping_methods module="smdropship">
+                    <title>Shipping Methods</title>
+                    <sort_order>50</sort_order>
+                    <action>adminhtml/vendors_shipping/index</action>
+                </vendors_shipping_methods>
+            </children>
+        </smvendors>
+    </menu>
+</config>

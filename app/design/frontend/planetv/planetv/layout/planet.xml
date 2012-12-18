@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout>
+    <planet_community_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+
+        <reference name="left">
+            <block type="planet/community_menu" name="community-menu" template="planet/community/menu.phtml" />
+        </reference>
+
+        <reference name="content">
+            <block type="planet/community_menu" name="community-content" template="planet/community/community.phtml" />
+        </reference>
+
+    </planet_community_index>
+
+    <!--<adminhtml_partner_index>-->
+        <!--<reference name="content">-->
+            <!--<block type="planet/adminhtml_partner" name="example" />-->
+        <!--</reference>-->
+    <!--</adminhtml_partner_index>-->
+
+    <adminhtml_partner_edit>
+        <reference name="content">
+            <block type="planet/adminhtml_partner_edit" name="example_edit" />
+        </reference>
+    </adminhtml_partner_edit>
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="planet"><name>about_me</name><path>planet/aboutme/index</path><label>About Me</label></action>
+        </reference>
+    </customer_account>
+
+    <planet_aboutme_index>
+
+        <update handle="customer_account"/>
+        <reference name="head">
+            <action method="addJs"><file>sm/planet/jquery-ui-1.8.18.custom.min.js</file></action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="core/template" name="link.about.me" template="customer/account/aboutme.phtml"></block>
+        </reference>
+    </planet_aboutme_index>
+
+    <planet_aboutme_save>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="core/template" name="link.about.me" template="customer/account/result.phtml"></block>
+        </reference>
+    </planet_aboutme_save>
+
+
+    <customer_account_index>
+
+    <!-- Mage_Review -->
+    <reference name="customer_account_dashboard">
+    <block type="core/template" name="access.vendor.area" as="info1" template="planet/home/accessvendorarea.phtml"/>
+    </reference>
+
+    </customer_account_index>
+
+
+
+</layout>

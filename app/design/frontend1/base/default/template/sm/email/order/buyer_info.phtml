@@ -1,0 +1,42 @@
+<?php 
+    $order = $this->getOrder();
+    /* @var $order Mage_Sales_Model_Order */
+    $customer = Mage::getModel('customer/customer');
+    if($order->getCustomerId()) {
+        $customer->load($order->getCustomerId());
+    }
+?>
+<tr>
+    <td>Date</td>
+    <td>:&nbsp;&nbsp; <?php echo date('j/n/Y',strtotime($order->getCreatedAt()))?></td>
+</tr>
+<tr>
+    <td>Order made by</td>
+    <td>:&nbsp;&nbsp; <?php echo Mage::helper('core')->htmlEscape($order->getCustomerName())?></td>
+</tr>
+
+<?php if($customer->getAbnNumber()):?>
+<tr>
+    <td>Buyer ABN</td>
+    <td>:&nbsp;&nbsp; <?php echo $customer->getAbnNumber()?></td>
+</tr>
+<?php endif;?>
+
+<?php if($customer->getEmail()):?>
+<tr>
+    <td>Buyer Email</td>
+    <td>:&nbsp;&nbsp; <?php echo $customer->getEmail()?></td>
+</tr>
+<?php endif;?>
+
+<?php if($this->getOutputShipping()):?>
+<tr><td colspan="2" style="height: 10px;"></td></tr>
+<tr>
+    <td colspan="2">
+        <strong style="text-transform:uppercase;color:#333;">Shipping Information</strong>
+    </td>
+</tr>
+<tr>
+    <td colspan="2"><?php echo $order->getShippingAddress()->format('html')?></td>
+</tr>
+<?php endif;?>

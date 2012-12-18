@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<config>
+    <sections>
+        <invitation translate="label" module="planet">
+            <label>Invitation Email</label>
+            <tab>customer</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>111</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <invitation_email>
+                    <label>Invitation Email Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>90</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <email_template translate="label">
+                            <label>Use Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_template>
+                        <sender_identity translate="label">
+                            <label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sender_identity>
+                    </fields>
+                </invitation_email>
+            </groups>
+        </invitation>
+    </sections>
+</config>

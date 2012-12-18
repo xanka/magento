@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_Dropship>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <SM_Vendors />
+            </depends>
+        </SM_Dropship>
+    </modules>
+</config>

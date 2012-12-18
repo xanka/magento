@@ -1,0 +1,621 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_Vendors>
+            <version>1.1.8</version>
+            <platform>ee</platform>
+        </SM_Vendors>
+    </modules>
+
+    <global>
+        <blocks>
+            <smvendors>
+                <class>SM_Vendors_Block</class>
+            </smvendors>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                    <catalog_product_edit_tab_related>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Edit_Tab_Related</catalog_product_edit_tab_related>
+                    <catalog_product_edit_tab_crosssell>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Edit_Tab_Crosssell</catalog_product_edit_tab_crosssell>
+                    <catalog_product_edit_tab_upsell>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Edit_Tab_Upsell</catalog_product_edit_tab_upsell>
+                    <catalog_product_edit_tab_super_config_grid>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Edit_Tab_Super_Config_Grid</catalog_product_edit_tab_super_config_grid>
+                    <catalog_product_edit_tab_super_group>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Edit_Tab_Super_Group</catalog_product_edit_tab_super_group>
+                    <catalog_product_edit_tab_price_tier>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Edit_Tab_Price_Tier</catalog_product_edit_tab_price_tier>
+                    <catalog_product_edit_tab_price_group>SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Edit_Tab_Price_Group</catalog_product_edit_tab_price_group>
+
+                    <sales_order_create_search_grid>SM_Vendors_Block_Override_Adminhtml_Sales_Order_Create_Search_Grid</sales_order_create_search_grid>
+                    <sales_order_view>SM_Vendors_Block_Override_Adminhtml_Sales_Order_View</sales_order_view>
+                    <!-- <page_menu>SM_Vendors_Block_Override_Adminhtml_Page_Menu</page_menu> -->
+                    <promo_quote_edit_tab_actions>SM_Vendors_Block_Override_Adminhtml_Promo_Quote_Edit_Tab_Actions</promo_quote_edit_tab_actions>
+                    <promo_catalog_edit_tab_actions>SM_Vendors_Block_Override_Adminhtml_Promo_Catalog_Edit_Tab_Actions</promo_catalog_edit_tab_actions>
+                    <customer_grid>SM_Vendors_Block_Override_Adminhtml_Customer_Grid</customer_grid>
+                    <customer_edit>SM_Vendors_Block_Override_Adminhtml_Customer_Edit</customer_edit>
+                    <promo_quote_grid>SM_Vendors_Block_Override_Adminhtml_Promo_Quote_Grid</promo_quote_grid>
+                    <promo_catalog_grid>SM_Vendors_Block_Override_Adminhtml_Promo_Catalog_Grid</promo_catalog_grid>
+                    <promo_catalog_edit_tab_main>SM_Vendors_Block_Override_Adminhtml_Promo_Catalog_Edit_Tab_Main</promo_catalog_edit_tab_main>
+                    <promo_quote_edit_tab_main>SM_Vendors_Block_Override_Adminhtml_Promo_Quote_Edit_Tab_Main</promo_quote_edit_tab_main>
+
+                    <customer>SM_Vendors_Block_Override_Adminhtml_Customer</customer>
+                    <customer_group_grid>SM_Vendors_Block_Override_Adminhtml_Customer_Group_Grid</customer_group_grid>
+                    <customer_group_edit_form>SM_Vendors_Block_Override_Adminhtml_Customer_Group_Edit_Form</customer_group_edit_form>
+                    <customer_edit_tab_account>SM_Vendors_Block_Override_Adminhtml_Customer_Edit_Tab_Account</customer_edit_tab_account>
+
+                    <customer_edit_form>SM_Vendors_Block_Override_Adminhtml_Customer_Edit_Form</customer_edit_form>
+                    <customer_edit_tabs>SM_Vendors_Block_Override_Adminhtml_Customer_Edit_Tabs</customer_edit_tabs>
+
+                    <!--report product-->
+                    <report_sales_bestsellers_grid>SM_Vendors_Block_Override_Adminhtml_Report_Sales_Bestsellers_Grid</report_sales_bestsellers_grid>
+                    <report_product_sold_grid>SM_Vendors_Block_Override_Adminhtml_Report_Product_Sold_Grid</report_product_sold_grid>
+                    <report_product_viewed_grid>SM_Vendors_Block_Override_Adminhtml_Report_Product_Viewed_Grid</report_product_viewed_grid>
+                    <report_product_lowstock_grid>SM_Vendors_Block_Override_Adminhtml_Report_Product_Lowstock_Grid</report_product_lowstock_grid>
+					<!--report customer-->
+                    <report_customer_totals_grid>SM_Vendors_Block_Override_Adminhtml_Report_Customer_Totals_Grid</report_customer_totals_grid>
+
+                    <!--report sale-->
+                    <report_sales_refunded_grid>SM_Vendors_Block_Override_Adminhtml_Report_Sales_Refunded_Grid</report_sales_refunded_grid>
+                    <report_sales_invoiced_grid>SM_Vendors_Block_Override_Adminhtml_Report_Sales_Invoiced_Grid</report_sales_invoiced_grid>
+                    <report_sales_tax_grid>SM_Vendors_Block_Override_Adminhtml_Report_Sales_Tax_Grid</report_sales_tax_grid>
+                    <report_sales_shipping_grid>SM_Vendors_Block_Override_Adminhtml_Report_Sales_Shipping_Grid</report_sales_shipping_grid>
+
+					<!-- orverride dashboard -->
+                    <dashboard_tab_customers_newest>SM_Vendors_Block_Override_Adminhtml_Dashboard_Tab_Customers_Newest</dashboard_tab_customers_newest>
+                    <dashboard_tab_customers_most>SM_Vendors_Block_Override_Adminhtml_Dashboard_Tab_Customers_Most</dashboard_tab_customers_most>
+                    <dashboard_tab_products_viewed>SM_Vendors_Block_Override_Adminhtml_Dashboard_Tab_Products_Viewed</dashboard_tab_products_viewed>
+                    <dashboard_orders_grid>SM_Vendors_Block_Override_Adminhtml_Dashboard_Orders_Grid</dashboard_orders_grid>
+                    <dashboard_totals>SM_Vendors_Block_Override_Adminhtml_Dashboard_Totals</dashboard_totals>
+                    <dashboard_sales>SM_Vendors_Block_Override_Adminhtml_Dashboard_Sales</dashboard_sales>
+					<!-- orverride dashboard -->
+                </rewrite>
+            </adminhtml>
+            <bundle>
+                <rewrite>
+                    <adminhtml_catalog_product_edit_tab_bundle_option_search_grid>SM_Vendors_Block_Override_Adminhtml_Bundle_Catalog_Product_Edit_Tab_Bundle_Option_Search_Grid</adminhtml_catalog_product_edit_tab_bundle_option_search_grid>
+                </rewrite>
+            </bundle>
+            <checkout>
+                <rewrite>
+                    <cart>SM_Vendors_Block_Override_Checkout_Cart</cart>
+                </rewrite>
+            </checkout>
+            <catalog>
+                <rewrite>
+                    <layer_view>SM_Vendors_Block_Override_Catalog_Layer_View</layer_view>
+                </rewrite>
+            </catalog>
+            <sales>
+                <rewrite>
+                    <order_email_items>SM_Vendors_Block_Sales_Order_Email_Items</order_email_items>
+                </rewrite>
+            </sales>
+        </blocks>
+
+        <resources>
+            <smvendors_setup>
+                <setup>
+                    <module>SM_Vendors</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </smvendors_setup>
+            <smvendors_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </smvendors_write>
+            <smvendors_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </smvendors_read>
+        </resources>
+		
+        <models>
+            <smvendors>
+                <class>SM_Vendors_Model</class>
+                <resourceModel>smvendors_mysql4</resourceModel>
+            </smvendors>
+            <smvendors_mysql4>
+                <class>SM_Vendors_Model_Mysql4</class>
+                <entities>
+                    <vendor>
+                        <table>sm_vendor</table>
+                    </vendor>
+                    <order>
+                        <table>sm_vendor_order</table>
+                    </order>
+                    <page>
+                        <table>sm_vendor_page</table>
+                    </page>
+                    <banner>
+                        <table>sm_vendor_banner</table>
+                    </banner>
+                    <vendor_customer>
+                        <table>sm_vendor_customer</table>
+                    </vendor_customer>
+                </entities>
+            </smvendors_mysql4>
+            <customer>
+                <rewrite>
+                    <customer>SM_Vendors_Model_Override_Customer</customer>
+                </rewrite>
+            </customer>
+            <customer_resource>
+                <rewrite>
+                    <group_collection>SM_Vendors_Model_Override_Customer_Resource_Group_Collection</group_collection>
+                </rewrite>
+            </customer_resource>
+            <sales>
+                <rewrite>
+                    <service_order>SM_Vendors_Model_Override_Sales_Service_Order</service_order>
+                    <order_pdf_invoice>SM_Vendors_Model_Override_Sales_Order_Pdf_Invoice</order_pdf_invoice>
+                    <order_pdf_shipment>SM_Vendors_Model_Override_Sales_Order_Pdf_Shipment</order_pdf_shipment>
+                    <order_pdf_shipment_packaging>SM_Vendors_Model_Override_Sales_Order_Pdf_Shipment_Packaging</order_pdf_shipment_packaging>
+                    <order_pdf_creditmemo>SM_Vendors_Model_Override_Sales_Order_Pdf_Creditmemo</order_pdf_creditmemo>
+					
+                    <order_invoice>SM_Vendors_Model_Override_Sales_Order_Invoice</order_invoice>
+                    <order_shipment>SM_Vendors_Model_Override_Sales_Order_Shipment</order_shipment>
+                    <order_creditmemo>SM_Vendors_Model_Override_Sales_Order_Creditmemo</order_creditmemo>
+                </rewrite>
+            </sales>
+			<!-- 
+			<checkout>
+			<rewrite>
+			<type_onepage>SM_Vendors_Model_Override_Checkout_Type_Onepage</type_onepage>
+			</rewrite>
+			</checkout>
+			-->
+
+            <salesrule>
+                <rewrite>
+                    <rule_condition_combine>SM_Vendors_Model_Override_Salesrule_Rule_Condition_Combine</rule_condition_combine> 
+                    <rule_condition_product_combine>SM_Vendors_Model_Override_Salesrule_Rule_Condition_Product_Combine</rule_condition_product_combine>
+                </rewrite>
+            </salesrule>
+            <catalogrule>
+                <rewrite>
+                    <rule_condition_combine>SM_Vendors_Model_Override_CatalogRule_Rule_Condition_Combine</rule_condition_combine>
+				<!-- 			        <observer>SM_Vendors_Model_Override_CatalogRule_Observer</observer> -->
+                </rewrite>
+            </catalogrule>
+            <catalog>
+                <rewrite>
+                    <layer_filter_item>SM_Vendors_Model_Override_Catalog_Layer_Filter_Item</layer_filter_item>
+                </rewrite>
+            </catalog>
+            <eav>
+                <rewrite>
+                    <entity_type>SM_Vendors_Model_Override_Eav_Entity_Type</entity_type>
+                </rewrite>
+            </eav>
+            <!-- override for customer report  -->
+            <reports_resource>
+                <rewrite>
+                    <customer_totals_collection>SM_Vendors_Model_Override_Reports_Resource_Totals_Collection</customer_totals_collection>
+                </rewrite>
+            </reports_resource>
+
+
+           <sales_resource>
+                <rewrite>
+                    <!--<report_bestsellers_collection>SM_Vendors_Model_Override_Sales_Mysql4_Report_Bestsellers_Collection</report_bestsellers_collection>-->
+                    <!--<report_bestsellers>SM_Vendors_Model_Override_Sales_Mysql4_Report_Bestsellers</report_bestsellers>-->
+                    <report_refunded_collection_order>SM_Vendors_Model_Override_Sales_Resource_Report_Refunded_Collection_Order</report_refunded_collection_order>
+                    <report_refunded_collection_refunded>SM_Vendors_Model_Override_Sales_Resource_Report_Refunded_Collection_Refunded</report_refunded_collection_refunded>
+                    <report_refunded>SM_Vendors_Model_Override_Sales_Resource_Report_Refunded</report_refunded>
+                    <report_invoiced>SM_Vendors_Model_Override_Sales_Resource_Report_Invoiced</report_invoiced>
+                    <report_invoiced_collection_order>SM_Vendors_Model_Override_Sales_Resource_Report_Invoiced_Collection_Order</report_invoiced_collection_order>
+                    <report_invoiced_collection_invoiced>SM_Vendors_Model_Override_Sales_Resource_Report_Invoiced_Collection_Invoiced</report_invoiced_collection_invoiced>
+                    <report_shipping>SM_Vendors_Model_Override_Sales_Mysql4_Report_Shipping</report_shipping>
+                </rewrite>
+            </sales_resource>
+
+            <tax_resource>
+                <rewrite>
+                    <report_collection>SM_Vendors_Model_Override_Tax_Resource_Report_Collection</report_collection>
+                    <report_updatedat_collection>SM_Vendors_Model_Override_Tax_Resource_Report_Updatedat_Collection</report_updatedat_collection>
+                    <report_tax_createdat>SM_Vendors_Model_Override_Tax_Resource_Report_Tax_Createdat</report_tax_createdat>
+                    <report_tax_updatedat>SM_Vendors_Model_Override_Tax_Resource_Report_Tax_Updatedat</report_tax_updatedat>
+                </rewrite>
+            </tax_resource>
+
+        </models>
+
+        <helpers>
+            <smvendors>
+                <class>SM_Vendors_Helper</class>
+            </smvendors>
+            <adminhtml>
+                <rewrite>
+					<!-- orverride dashboard -->
+                    <dashboard_order>SM_Vendors_Helper_Override_Adminhtml_Dashboard_Order</dashboard_order>
+					<!-- orverride dashboard -->
+                </rewrite>
+            </adminhtml>
+        </helpers>
+
+        <events>
+<!--        <controller_front_init_routers>
+            <observers>
+                <cms>
+                    <class>SM_Vendors_Controller_Router_Vendor</class>
+                    <method>initControllerRouters</method>
+                </cms>
+            </observers>
+        </controller_front_init_routers>-->
+      
+			<!--<controller_front_init_routers>
+				<observers>
+					<smvendors>
+						<class>SM_Vendors_Controller_Router</class>
+						<method>handleVendorDomain</method>
+					</smvendors>
+				</observers>
+			</controller_front_init_routers>-->
+			<!-- hook save shipping method -->
+			<!-- 			<checkout_submit_all_after> -->
+			<!-- 				<observers> -->
+			<!-- 					<smvendors> -->
+			<!-- 						<type>singleton</type> -->
+			<!-- 						<class>smvendors/observer</class> -->
+			<!-- 						<method>hookOnepageSaveOrderAfter</method> -->
+			<!-- 					</smvendors> -->
+			<!-- 				</observers> -->
+			<!-- 			</checkout_submit_all_after> -->
+
+            <controller_action_predispatch_checkout_cart_add>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCheckoutCartAddPreDispatch</method>
+                    </smvendors>
+                </observers>
+            </controller_action_predispatch_checkout_cart_add>
+
+            <catalog_product_collection_load_after>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/price_observer</class>
+                        <method>addFinalPriceForCustomerGroup</method>
+                    </smvendors>
+                </observers>
+            </catalog_product_collection_load_after>
+
+			<!-- hook customer create new account  -->
+            <customer_register_success>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCustomerRegisterSuccess</method>
+                    </smvendors>
+                </observers>
+            </customer_register_success>
+
+            <controller_action_predispatch_customer_account_editPost>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCustomerAccountEditPostPreDispatch</method>
+                    </smvendors>
+                </observers>
+            </controller_action_predispatch_customer_account_editPost>
+
+            <sales_order_status_history_save_before>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookSalesOrderStatusHistorySaveBefore</method>
+                    </smvendors>
+                </observers>
+            </sales_order_status_history_save_before>
+
+            <sales_order_place_after>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookOrderPlaceAfter</method>
+                    </smvendors>
+                </observers>              
+            </sales_order_place_after>		
+		
+        </events>
+
+        <fieldsets>
+            <sales_convert_quote_item>
+                <vendor_id>
+                    <to_order_item>*</to_order_item>
+                </vendor_id>
+            </sales_convert_quote_item>
+        </fieldsets>
+
+        <template>
+            <email>
+                <smvendors_email_order_template_new translate="label" module="smvendors">
+                    <label>For Vendor: New Order</label>
+                    <file>smvendors/order_new.html</file>
+                    <type>html</type>
+                </smvendors_email_order_template_new>
+                <smvendors_email_order_template_new_to_vendor translate="label" module="smvendors">
+                    <label>For Vendor: New Order Send to Vendor</label>
+                    <file>smvendors/order_new_to_vendor.html</file>
+                    <type>html</type>
+                </smvendors_email_order_template_new_to_vendor>
+                <smvendors_email_order_template_update translate="label" module="smvendors">
+                    <label>For Vendor: Update Order</label>
+                    <file>smvendors/order_update.html</file>
+                    <type>html</type>
+                </smvendors_email_order_template_update>
+                <smvendors_email_invoice_template_new translate="label" module="smvendors">
+                    <label>For Vendor: New Invoice</label>
+                    <file>smvendors/invoice_new.html</file>
+                    <type>html</type>
+                </smvendors_email_invoice_template_new>
+                <smvendors_email_invoice_template_update translate="label" module="smvendors">
+                    <label>For Vendor: Update Invoice</label>
+                    <file>smvendors/invoice_update.html</file>
+                    <type>html</type>
+                </smvendors_email_invoice_template_update>
+                <smvendors_email_shipment_template_new translate="label" module="smvendors">
+                    <label>For Vendor: New Shipment</label>
+                    <file>smvendors/shipment_new.html</file>
+                    <type>html</type>
+                </smvendors_email_shipment_template_new>
+                <smvendors_email_shipment_template_update translate="label" module="smvendors">
+                    <label>For Vendor: Update Shipment</label>
+                    <file>smvendors/shipment_update.html</file>
+                    <type>html</type>
+                </smvendors_email_shipment_template_update>
+                <smvendors_email_creditmemo_template_new translate="label" module="smvendors">
+                    <label>For Vendor: New Creditmemo</label>
+                    <file>smvendors/creditmemo_new.html</file>
+                    <type>html</type>
+                </smvendors_email_creditmemo_template_new>
+                <smvendors_email_creditmemo_template_update translate="label" module="smvendors">
+                    <label>For Vendor: Update Creditmemo</label>
+                    <file>smvendors/creditmemo_update.html</file>
+                    <type>html</type>
+                </smvendors_email_creditmemo_template_update>
+                <smvendors_email_contact_vendor_template translate="label" module="smvendors">
+                    <label>For Vendor: Contact Vendor</label>
+                    <file>smvendors/contact_vendor.html</file>
+                    <type>html</type>
+                </smvendors_email_contact_vendor_template>
+
+				<!-- Vendor create account email templates -->
+                <customer_create_account_vendor_email_template translate="label" module="customer">
+                    <label>New Vendor account</label>
+                    <file>smvendors/vendor_account_new.html</file>
+                    <type>html</type>
+                </customer_create_account_vendor_email_template>
+                <customer_create_account_vendor_email_confirmation_template translate="label" module="customer">
+                    <label>New Vendor account confirmation key</label>
+                    <file>smvendors/vendor_account_new_confirmation.html</file>
+                    <type>html</type>
+                </customer_create_account_vendor_email_confirmation_template>
+                <customer_create_account_vendor_email_confirmed_template translate="label" module="customer">
+                    <label>New Vendor account confirmed</label>
+                    <file>smvendors/vendor_account_new_confirmed.html</file>
+                    <type>html</type>
+                </customer_create_account_vendor_email_confirmed_template>
+                <customer_create_account_vendor_email_approved_template translate="label" module="customer">
+                    <label>For Vendor: New Vendor Approved</label>
+                    <file>smvendors/vendor_account_approved.html</file>
+                    <type>html</type>
+                </customer_create_account_vendor_email_approved_template>
+
+                <customer_create_account_notice_admin_about_signup_template translate="label" module="customer">
+                    <label>For Vendor: Notice Admin When New Vendor Signup</label>
+                    <file>smvendors/notice_admin_about_new_signup.html</file>
+                    <type>html</type>
+                </customer_create_account_notice_admin_about_signup_template>
+            </email>
+        </template>		
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <smvendors>
+                    <file>sm/vendors.xml</file>
+                </smvendors>
+                <smvendors_sales>
+                    <file>sm/vendors_sales.xml</file>
+                </smvendors_sales>                
+            </updates>
+        </layout>
+        <routers>
+            <smvendors>
+                <use>standard</use>
+                <args>
+                    <module>SM_Vendors</module>
+                    <frontName>vendor</frontName>
+                </args>
+            </smvendors>
+        </routers>
+        <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCartProductAddAfter</method>
+                    </smvendors>
+                </observers>
+            </checkout_cart_product_add_after>
+
+            <controller_action_predispatch_checkout_cart_index>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCartProductAddAfter</method>
+                    </smvendors>
+                </observers>
+            </controller_action_predispatch_checkout_cart_index>
+
+            <checkout_cart_update_items_after>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCartProductUpdateItemAfter</method>
+                    </smvendors>
+                </observers>
+            </checkout_cart_update_items_after>
+
+            <catalog_product_get_final_price>
+                <observers>
+                    <smvendors>
+                        <class>smvendors/price_observer</class>
+                        <method>processFrontFinalPrice</method>
+                    </smvendors>
+                </observers>
+            </catalog_product_get_final_price>
+        </events>
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <smvendors before="Mage_Adminhtml">SM_Vendors_Adminhtml</smvendors>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <smvendors>
+                    <file>sm/vendors.xml</file>
+                </smvendors>
+                <smvendors_sales>
+                    <file>sm/vendors_sales.xml</file>
+                </smvendors_sales>
+            </updates>
+        </layout>
+        <events>
+            <adminhtml_customer_prepare_save>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookAdminCustomerPrepareSave</method>
+                    </smvendors>
+                </observers>
+            </adminhtml_customer_prepare_save>
+
+            <customer_group_save_before>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCustomerGroupBeforeSave</method>
+                    </smvendors>
+                </observers>
+            </customer_group_save_before>
+
+            <sales_quote_add_item>
+                <observers>
+                    <smvendors>
+                        <type>singleton</type>
+                        <class>smvendors/observer</class>
+                        <method>hookCartProductAddAfter</method>
+                    </smvendors>
+                </observers>
+            </sales_quote_add_item>
+
+            <catalog_product_get_final_price>
+                <observers>
+                    <smvendors>
+                        <class>smvendors/price_observer</class>
+                        <method>processAdminFinalPrice</method>
+                    </smvendors>
+                </observers>
+            </catalog_product_get_final_price>
+
+            <admin_system_config_changed_section_smvendors>
+                <observers>
+                    <sm_core_init_service>
+                        <type>singleton</type>
+                        <class>smcore/observer</class>
+                        <method>refreshStatus</method>
+                    </sm_core_init_service>
+                </observers>
+            </admin_system_config_changed_section_smvendors>
+
+        </events> 
+    </adminhtml>
+
+    <default>
+        <smvendors>
+            <general>
+                <enable>1</enable>
+            </general>
+        </smvendors>
+        <smvendors_email>
+            <order>
+                <template_new>smvendors_email_order_template_new</template_new>
+                <template_new_to_vendor>smvendors_email_order_template_new_to_vendor</template_new_to_vendor>
+                <template_update>smvendors_email_order_template_update</template_update>
+            </order>
+            <invoice>
+                <template_new>smvendors_email_invoice_template_new</template_new>
+                <template_update>smvendors_email_invoice_template_update</template_update>
+            </invoice>
+            <shipment>
+                <template_new>smvendors_email_shipment_template_new</template_new>
+                <template_update>smvendors_email_shipment_template_update</template_update>
+            </shipment>
+            <creditmemo>
+                <template_new>smvendors_email_creditmemo_template_new</template_new>
+                <template_update>smvendors_email_creditmemo_template_update</template_update>
+            </creditmemo>
+            <contact_vendor>
+                <template>smvendors_email_contact_vendor_template</template>
+            </contact_vendor>
+        </smvendors_email>
+        <customer>
+            <create_account>
+                <vendor_email_template>customer_create_account_vendor_email_template</vendor_email_template>
+                <vendor_email_confirmation_template>customer_create_account_vendor_email_confirmation_template</vendor_email_confirmation_template>
+                <vendor_email_confirmed_template>customer_create_account_vendor_email_confirmed_template</vendor_email_confirmed_template>
+                <vendor_email_approved_template>customer_create_account_vendor_email_approved_template</vendor_email_approved_template>
+                <notice_admin_about_signup_template>customer_create_account_notice_admin_about_signup_template</notice_admin_about_signup_template>
+            </create_account>
+        </customer>
+    </default>
+    <stores>
+        <default>
+            <web>
+                <routers>
+                    <standard>
+                        <area>frontend</area>
+                        <class>SM_Vendors_Controller_Router_Vendor</class>
+                    </standard>
+                </routers>
+            </web>
+        </default>
+    </stores>
+    <crontab>
+        <jobs>
+            <catalogrule_apply_all>
+                <schedule><cron_expr>0 1 * * *</cron_expr></schedule>
+                <run>
+                    <model>smvendors/observer::sendingreviewemail</model>
+                </run>
+            </catalogrule_apply_all>
+        </jobs>
+
+    </crontab>
+</config>

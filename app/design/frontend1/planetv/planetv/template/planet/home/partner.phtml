@@ -1,0 +1,18 @@
+<?php
+/**
+ * Date: 10/6/12
+ */
+
+$partners = Mage::getModel('web/web')->getCollection();
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+?>
+
+<div id="home_partner">
+    <marquee behavior="scroll" direction="left">
+    <?php foreach($partners as $_parter): ?>
+        <?php if ($_parter->getData('status') == 1): ?>
+        <li style="display: inline" accesskey=""><img src="<?php echo $mediaUrl.$_parter->getData('image_url') ?>" /></li>
+        <?php endif ?>
+    <?php endforeach ?>
+    </marquee>
+</div>

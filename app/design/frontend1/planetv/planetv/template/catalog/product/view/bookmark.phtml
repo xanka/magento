@@ -1,0 +1,17 @@
+<?php
+/**
+ * Date: 10/19/12
+ * Time: 2:16 AM
+ */
+
+?>
+
+<div id="product-bookmark">
+    <?php $currentUrl = $this->helper('core/url')->getCurrentUrl(); ?>
+    <div id="facebook-like">
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="<?php echo $currentUrl ?>" show_faces="false" width="450" font=""></fb:like>
+    </div>
+    <div id="twitter-like">
+        <a href="http://twitter.com/share" data-count="vertical">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </div>
+</div>

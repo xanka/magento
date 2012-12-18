@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout>
+    <default>   
+     <reference name="head">
+          <action method="addJs"><script>sm/planet/jquery-1.7.1.min.js</script></action>
+        </reference>
+    </default>
+    <adminhtml_customemail_index>
+        <reference name="content">
+            <block type="planet/adminhtml_customemail_container" name="planet.customemail.container"> 
+            </block>           
+        </reference>
+    </adminhtml_customemail_index>
+    
+    <adminhtml_invitation_index>
+        <reference name="head">
+          <action method="addJs"><script>sm/planet/invitationform.js</script></action>
+        </reference>
+        <reference name="content">
+            <block type="planet/adminhtml_invitation_container" name="planet.invitation.container"> 
+            </block>           
+        </reference>
+    </adminhtml_invitation_index>
+</layout>

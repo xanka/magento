@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Admin
+ * Date: 10/11/12
+ * Time: 12:46 AM
+ * To change this template use File | Settings | File Templates.
+ */
+$currentCat = Mage::getModel('catalog/layer')->getCurrentCategory();
+
+?>
+
+<div id="left-col">
+    <?php $_helper = Mage::helper('catalog/category') ?>
+    <?php $_categories = $_helper->getStoreCategories() ?>
+    <?php $currentCategory = Mage::registry('current_category') ?>
+    <?php if (count($_categories) > 0): ?>
+    <ul>
+        <?php foreach($_categories as $_category): ?>
+        <li <?php if ($currentCategory && ($currentCategory->getId() == $_category->getId() || $currentCategory->getData('parent_id') == $_category->getId() )): ?> class="selected" <?php endif ?>>
+            <a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
+                <?php echo $_category->getName() ?>
+            </a>
+            <?php if ($currentCategory && $currentCategory->getId() == $_category->getId()): ?>
+            <?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+</div>
+
+

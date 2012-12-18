@@ -1,0 +1,90 @@
+<?php
+/**
+ * Date: 11/17/12
+ * Time: 1:56 PM
+ */
+$helper = Mage::helper('web');
+$question = Mage::getModel('web/question')->getCollection();
+$validQuestion = array();
+//get all question has status enable
+foreach($question as $value) {
+    if ($value->getData('status') != 0) {
+        $_question = Mage::getModel('web/question')->load($value->getId());
+        $validQuestion[] = $_question;
+    }
+}
+?>
+<div class="page-title">
+    <h1>About Me</h1>
+</div>
+
+<div class="about.content aboutus-content">
+<?php if (count($validQuestion) <= 0): ?>
+
+<p>There are no question available at the moment</p>
+
+<?php else:?>
+
+<p>We would love to know more about you and your veggie ventures!</p>
+<form action="<?php echo $this->getUrl('planet/aboutme/save') ?>" method="post" id="form-validate">
+<!--    Begin all question-->
+    <?php foreach($validQuestion as $_question): ?>
+        <div class="clearfix question-content">
+            <!--    Load question-->
+            <p class="question" accesskey=""><?php echo $_question->getData('question') ?></p>
+            <!--    Load answer-->
+            <!--    Check type of question then output answer-->
+            <?php if ($_question->getData('question_type') == 'dropbox'): ?>
+			<p class="seclect-box">
+                <select name="<?php echo $_question->getId() ?>" accesskey="">
+                    <?php $answer = $helper->loadAnswer($_question->getId());
+                    foreach($answer as $_answer): ?>
+                        <option value="<?php echo $_answer ?>" accesskey=""><?php echo $_answer ?></option>
+                    <?php endforeach ?>
+                </select>
+			</p>
+            <?php elseif ($_question->getData('question_type') == 'datetime'): ?>
+			<p class="seclect-box">
+            <input type="text" name="<?php echo $_question->getId() ?>" class="datetimetype" />
+			</p>
+            <?php endif ?>
+        </div>
+<!--    Load answer finish        -->
+    <?php endforeach ?>
+    <p>Thank you for telling us about yourself, it's nice to get to know our customers!</p>
+<!--    load all question finish-->
+    <div class="buttons-set">
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+    </div>
+
+</form>
+
+    <?php endif; ?>
+</div>
+
+    <script type="text/javascript" >
+        jQuery(document).ready(function(){
+            // apply style for form
+           jQuery("form#form-validate").jqTransform();
+           jQuery('.jqTransformInputWrapper').css({'width':'185px'})
+            // remove pink hightlisht on about me page
+
+//            jQuery('.block-content .last').css({'color':'#333333','background':'none'});
+            //remove dot-line above save butotn
+            jQuery('.buttons-set').css({'border':'none'});
+
+            //apply datepicker
+            jQuery('.datetimetype').datepicker({
+            		changeYear: true,
+                	yearRange: '-100:+10'
+                });
+
+        });
+        jQuery('#ui-datepicker-div').css({'z-index':'99'});
+
+    </script>
+
+
+
+

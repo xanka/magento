@@ -1,0 +1,12 @@
+<?php if($vendorOrder = $this->getParentBlock()->getVendorOrder()):?>
+<tr>
+    <td class="label">
+        <div class="summary-collapse">
+            <?php echo Mage::helper('sales')->__('Tax') ?>
+        </div>
+    </td>
+    <td>
+        <?php echo  Mage::helper('core')->currency($vendorOrder->getTaxAmount()) ?>
+    </td>
+</tr>
+<?php endif;?>

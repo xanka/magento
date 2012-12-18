@@ -1,0 +1,28 @@
+<div class="featured-vendor">
+    <h3><?php echo $this->__('Featured Vendor'); ?></h3>
+<!--    <a href="javascript:void(0)" class="btn-prev">Prev</a>-->
+    <div id="featured-vendors-slider">
+    	<?php $vendors = $this->getVendorCollection(); ?>
+    	<?php if ($vendors->count()): ?>
+        <ul>
+        	<?php foreach ($vendors as $vendor): ?>
+            <li>
+
+            	<a href="<?php echo $vendor->getVendorUrl() ?>" title="<?php $vendor->getVendorName() ?>">
+<!--        			<img alt="--><?php //$vendor->getVendorName() ?><!--" src="--><?php //echo $vendor->getVendorLogoUrl() ?><!--" />-->
+                    <span><?php echo $vendor->getVendorName() ?></span>
+        		</a>
+            </li>
+        	<?php endforeach; ?>
+        </ul>
+    	<?php endif; ?>
+    </div>
+<!--    <a href="javascript:void(0)" class="btn-next">Next</a>-->
+</div>
+<!--<script>-->
+<!--jQuery('#featured-vendors-slider').jCarouselLite({-->
+<!--    btnNext: '.btn-next',-->
+<!--    btnPrev: '.btn-prev',-->
+<!--    visible: 6-->
+<!--});-->
+<!--</script>-->

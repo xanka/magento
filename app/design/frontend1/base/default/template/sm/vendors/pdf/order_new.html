@@ -1,0 +1,66 @@
+<!--@subject {{var store.getFrontendName()}}: New Order # {{var vendor_order.increment_id}} @-->
+<!--@vars
+{}
+@-->
+<!--@styles
+{{block type="core/template" template="sm/email/order/styles.phtml"}}
+@-->
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+    <tr>
+        <td align="center"><table cellspacing="0" cellpadding="0" border="0" width="700" 
+            style="text-align:left">
+            <tr>
+                <td colspan="2" style="height:5px;background:#2897d4;font-size:0">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    {{block type="core/template" template="sm/email/order/email_logo.phtml"}}
+                </td>
+                <td align="right" style="padding-top:20px;"><table cellpadding="0" cellspacing="0" 
+                    border="0" width="250" style="text-align:left">
+                    <tr>
+                        <td colspan="2" style="padding-bottom:10px;">
+                            <strong style="text-transform:uppercase;color:#333;">
+                                {{var order.getBillingAddress().getCompany()}}</strong>
+                        </td>
+                    </tr>
+                    {{block type="core/template" template="sm/email/order/buyer_info.phtml" order=$order}}
+                </table></td>
+            </tr>
+            <tr>
+                <td colspan="2" valign="top" style="background:#dddddd url({{skin url="images/email/email_title.jpg" _area='frontend'}}) no-repeat;height:49px;">
+                <h3 style="padding:10px 20px;margin:0;color:#000;text-transform:uppercase;font-size:16px;">order</h3></td>
+            </tr>
+            <tr>
+                <td colspan="2"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td style="padding-left:10px;"><table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td style="padding-left:10px;padding-bottom:30px">
+                                    <h4>Hello, {{htmlescape var=$order.getCustomerFirstname()}}</h4>
+                                    <p style="margin:10px 0;padding:0">
+                                    If you have any problems with your order, 
+                                    please contact the vendor directly and refer to the Vendor Order No.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-bottom:40px;">
+                                    <h4 style="padding-left:10px">Items Ordered</h4>
+                                    <br/>
+                                    {{layout handle="sales_email_order_items" order=$order vendor_order=$vendor_order}}
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><img src="{{skin url="images/email/email_linefooter.jpg" _area='frontend'}}" width="679" height="5" style="display:block;"/></td>
+                            </tr>
+                        </table></td>
+                        <td valign="top" align="right"><img src="{{skin url="images/email/email_bgtitle.jpg" _area='frontend'}}" width="11" height="23" style="display:block"/></td>
+                    </tr>
+                </table></td>
+            </tr>
+        </table></td>
+    </tr>
+</table>
+</body>

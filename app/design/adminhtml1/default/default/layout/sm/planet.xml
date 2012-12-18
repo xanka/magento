@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout>
+
+
+    <adminhtml_partner_index>
+        <reference name="content">
+            <block type="planet/adminhtml_partner" name="exampleeee" />
+        </reference>
+    </adminhtml_partner_index>
+
+    <adminhtml_partner_edit>
+        <reference name="content">
+            <block type="planet/adminhtml_partner_edit" name="example_edit" />
+        </reference>
+    </adminhtml_partner_edit>
+</layout>

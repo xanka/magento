@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SM_Planet>
+            <version>1.0.8</version>
+            <platform>ee</platform>
+        </SM_Planet>
+    </modules>
+    <global>
+        <blocks>
+            <planet>
+                <class>SM_Planet_Block</class>
+            </planet>
+            <customer>
+            	<rewrite>
+            		<account_navigation>SM_Planet_Block_Override_Customer_Account_Navigation</account_navigation>
+            	</rewrite>
+            </customer>
+            <adminhtml>
+                <rewrite>
+                    <widget_grid>SM_Planet_Block_Adminhtml_Override_Widget_Grid</widget_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <helpers>
+            <planet>
+                <class>SM_Planet_Helper</class>
+            </planet>
+        </helpers>
+
+        <models>
+            <planet>
+                <class>SM_Planet_Model</class>
+                <resourceModel>planet_resource</resourceModel>
+            </planet>
+            <planet_resource>
+                <class>SM_Planet_Model_Resource</class>
+                <entities>
+                    <partner>
+                        <table>planet_partner</table>
+                    </partner>
+                </entities>
+            </planet_resource>
+            <admin>
+				<rewrite>
+					<session>SM_Planet_Model_Override_Admin_Session</session>
+				</rewrite>
+			</admin>
+        </models>
+
+        <resources>
+            <planet_setup>
+                <setup>
+                    <module>SM_Planet</module>
+                </setup>
+            </planet_setup>
+        </resources>
+
+        <events>
+            <smvendors_adminhtml_vendor_edit_tab_prepare_form>
+                <observers>
+                    <planet>
+                        <type>singleton</type>
+                        <class>planet/observer</class>
+                        <method>hookVendorEditTabPrepareForm</method>
+                    </planet>
+                </observers>
+            </smvendors_adminhtml_vendor_edit_tab_prepare_form>
+            <adminhtml_customer_prepare_save>
+                <observers>
+                    <planet>
+                        <type>singleton</type>
+                        <class>planet/observer</class>
+                        <method>hookAdminCustomerPrepareSave</method>
+                    </planet>
+                </observers>
+            </adminhtml_customer_prepare_save>
+        </events>
+
+        <template>
+            <email>
+                <smvendors_email_order_template_reject_to_customer translate="label" module="planet">
+                    <label>Email Reject Order Template To Customer</label>
+                    <file>planet/order_reject_to_user.html</file>
+                    <type>html</type>
+                </smvendors_email_order_template_reject_to_customer>
+
+                <smvendors_email_order_template_reject_to_admin translate="label" module="planet">
+                    <label>Email Reject Order Template To Admin</label>
+                    <file>planet/order_reject_to_admin.html</file>
+                    <type>html</type>
+                </smvendors_email_order_template_reject_to_admin>
+            </email>
+        </template>
+    </global>
+
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <sm_planet before="Mage_Customer">SM_Planet_Customer</sm_planet>
+                    </modules>
+                </args>
+            </customer>
+            <planet>
+                <use>standard</use>
+                <args>
+                    <module>SM_Planet</module>
+                    <frontName>planet</frontName>
+                </args>
+            </planet>
+        </routers>
+        <layout>
+            <updates>
+                <planet>
+                    <file>planet.xml</file>
+                </planet>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <sm_planet before="Mage_Adminhtml">SM_Planet_Adminhtml</sm_planet>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+     <adminhtml>
+        <layout>
+            <updates>
+                <planet>
+                    <file>sm/planet.xml</file>
+                </planet>
+            </updates>
+        </layout>
+
+         <acl>
+             <resources>
+                 <admin>
+                     <children>
+                         <planet>
+                             <title>Advertise</title>
+                             <children>
+                                 <partner translate="title" module="planet">
+                                     <title>Example Menu Item</title>
+                                 </partner>
+                             </children>
+                         </planet>
+                     </children>
+                 </admin>
+             </resources>
+         </acl>
+		 <events>
+    		<adminhtml_controller_action_predispatch_start>
+                <observers>
+                    <stockenough>
+                        <class>planet/observer</class>
+                        <method>adminhtmlIndexIndexPreDispatch</method>
+                    </stockenough>
+                </observers>
+            </adminhtml_controller_action_predispatch_start>
+    	</events>
+    </adminhtml>
+
+    <default>
+        <planet>
+            <email>
+                <enabled>1</enabled>
+                <template>smvendors_email_order_template_reject_to_customer</template>
+                <template>smvendors_email_order_template_reject_to_admin</template>
+                <identity>sales</identity>
+            </email>
+        </planet>
+    </default>
+</config>
