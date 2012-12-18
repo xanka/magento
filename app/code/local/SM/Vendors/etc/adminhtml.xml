@@ -19,11 +19,11 @@
                         </children>
                     </system>
                     <smvendors module="smvendors">
-                        <title>Vendors</title>
+                        <title>Merchants</title>
                         <sort_order>40</sort_order>
                         <children>
                             <vendors_manager module="smvendors">
-                                <title>Vendors</title>
+                                <title>Merchants</title>
                                 <sort_order>0</sort_order>
                             </vendors_manager>
 							
@@ -136,11 +136,11 @@
     </acl>
     <menu>
         <smvendors>
-            <title>Vendors</title>
+            <title>Merchants</title>
             <sort_order>80</sort_order>
             <children>
                 <vendors_manager module="smvendors">
-                    <title>Vendors</title>
+                    <title>Merchants</title>
                     <sort_order>0</sort_order>
                     <action>adminhtml/vendors/index</action>
                 </vendors_manager>

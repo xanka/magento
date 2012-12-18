@@ -8,7 +8,7 @@ class SM_Vendors_Block_Adminhtml_Vendor_Edit_Tab_Form extends Mage_Adminhtml_Blo
     	$customer = Mage::registry('current_customer');
         $form = new Varien_Data_Form();
 
-        $fieldset = $form->addFieldset('vendor_form', array('legend' => Mage::helper('smvendors')->__('Vendor information')));
+        $fieldset = $form->addFieldset('vendor_form', array('legend' => Mage::helper('smvendors')->__('Merchant information')));
         $version = substr(Mage::getVersion(), 0, 3);
         //$config = (($version == '1.4' || $version == '1.5') ? "'config' => Mage::getSingleton('banner/wysiwyg_config')->getConfig()" : "'class'=>''");
 

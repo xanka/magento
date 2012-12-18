@@ -6,7 +6,7 @@ class SM_Vendors_Block_Adminhtml_Vendor_Edit_Tabs extends Mage_Adminhtml_Block_W
         parent::__construct();
         $this->setId('customer_info_tabs');
         $this->setDestElementId('edit_form');
-        $this->setTitle(Mage::helper('smvendors')->__('Vendor Information'));
+        $this->setTitle(Mage::helper('smvendors')->__('Merchant Information'));
     }
 
     protected function _beforeToHtml()
@@ -20,7 +20,7 @@ class SM_Vendors_Block_Adminhtml_Vendor_Edit_Tabs extends Mage_Adminhtml_Block_W
 		// implement logic later
 		
 		$this->addTab('vendor_info', array(
-            'label'     => Mage::helper('smvendors')->__('Vendor Information'),
+            'label'     => Mage::helper('smvendors')->__('Merchant Information'),
             'content'   => $this->getLayout()->createBlock('smvendors/adminhtml_vendor_edit_tab_form')->toHtml(),
         ));
 		/*

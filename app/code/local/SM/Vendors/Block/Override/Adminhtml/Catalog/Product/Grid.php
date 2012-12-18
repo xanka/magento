@@ -121,7 +121,7 @@ class SM_Vendors_Block_Override_Adminhtml_Catalog_Product_Grid extends Mage_Admi
         if (!$vendor) {
 
             $this->addColumn('sm_product_vendor_id', array(
-                'header' => $this->__('Vendor Name'),
+                'header' => $this->__('Merchant Name'),
                 'index' => 'sm_product_vendor_id',
                 'type' => 'options',
                 'options' => Mage::getResourceModel('smvendors/vendor_collection')->getOptionArray()

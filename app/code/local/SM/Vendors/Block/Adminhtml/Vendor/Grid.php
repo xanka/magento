@@ -44,7 +44,7 @@ class SM_Vendors_Block_Adminhtml_Vendor_Grid extends Mage_Adminhtml_Block_Widget
             'type'  => 'number',
         ));
         $this->addColumn('vendor_prefix', array(
-                'header'    => Mage::helper('smvendors')->__('Vendor Prefix'),
+                'header'    => Mage::helper('smvendors')->__('Merchant Prefix'),
                 'width'     => '100px',
                 'index'     => 'vendor_prefix'
         ));
@@ -60,7 +60,7 @@ class SM_Vendors_Block_Adminhtml_Vendor_Grid extends Mage_Adminhtml_Block_Widget
         ));
 		
 		$this->addColumn('vendor_name', array(
-            'header'    => Mage::helper('customer')->__('Vendor name'),
+            'header'    => Mage::helper('customer')->__('Merchant name'),
 //             'width'     => '150',
             'index'     => 'vendor_name'
         ));
@@ -73,7 +73,7 @@ class SM_Vendors_Block_Adminhtml_Vendor_Grid extends Mage_Adminhtml_Block_Widget
 		
 
         $this->addColumn('vendor_status', array(
-            'header'    =>  Mage::helper('customer')->__('Vendor Status'),
+            'header'    =>  Mage::helper('customer')->__('Merchant Status'),
             'width'     =>  '100',
             'index'     =>  'vendor_status',
             'type'      =>  'options',
