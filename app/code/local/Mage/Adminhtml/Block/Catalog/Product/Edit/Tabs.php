@@ -54,7 +54,7 @@ class Mage_Adminhtml_Block_Catalog_Product_Edit_Tabs extends Mage_Adminhtml_Bloc
         if ($setId) {
             $groupCollection = Mage::getResourceModel('eav/entity_attribute_group_collection')
                 ->setAttributeSetFilter($setId)
-                ->addFieldToFilter('attribute_group_id',array('in'=>array('111','113','114'))) // using 'in' instead of 'nin' will only return these tabs, 6 and 8
+                ->addFieldToFilter('attribute_group_name',array('nin'=>array('Meta Information','Recurring Profile','Design'))) // using 'in' instead of 'nin' will only return these tabs, 6 and 8
                 ->setSortOrder()
                 ->load();
 
