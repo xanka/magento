@@ -54,7 +54,7 @@ class Mage_Adminhtml_Block_Catalog_Product_Edit_Tab_Settings extends Mage_Adminh
         $entityType = Mage::registry('product')->getResource()->getEntityType();
 
         $fieldset->addField('attribute_set_id', 'select', array(
-            'label' => Mage::helper('catalog')->__('Attribute Set'),
+            'label' => Mage::helper('catalog')->__('Main Category'),
             'title' => Mage::helper('catalog')->__('Attribute Set'),
             'name'  => 'set',
             'value' => $entityType->getDefaultAttributeSetId(),
