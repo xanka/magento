@@ -10,8 +10,8 @@ $route = Mage::app()->getFrontController()->getRequest()->getRouteName();
 <div id="home_navigation" class="clearfix nav-container">
     <ul id="nav">
         <li <?php if($currenModule == 'cms'): ?> class="selected" <?php endif ?>><a href="<?php echo Mage::helper('core/url')->getHomeUrl(); ?>"><span><?php echo $this->__('home') ?></span></a></li>
-        <li <?php if($currenModule == 'catalog'): ?> class="selected" <?php endif ?>><a href="<?php echo $this->getMarketplaceurl(); ?>"><span><?php echo $this->__('marketplace') ?></span></a></li>
-        <li <?php if($currenModule == 'blog'): ?> class="selected" <?php endif ?>><a href="<?php echo Mage::helper('core/url')->getHomeUrl().Mage::getStoreConfig('blog/blog/route'); ?>"><span><?php echo $this->__('directory') ?></span></a></li>
-        <li <?php if($route == 'planet'): ?> class="selected" <?php endif ?>><a href="<?php echo Mage::helper('core/url')->getHomeUrl().'planet/community' ?>"><span><?php echo $this->__('community') ?></span></a></li>
+        <li <?php if($currenModule == 'catalog'): ?> class="selected" <?php endif ?>><a href="<?php echo Mage::helper('core/url')->getHomeUrl(); ?>marketplace/"><span><?php echo $this->__('marketplace') ?></span></a></li>
+        <li <?php if($currenModule == 'blog'): ?> class="selected" <?php endif ?>><a href="<?php echo Mage::helper('core/url')->getHomeUrl(); ?>directory/"><span><?php echo $this->__('directory') ?></span></a></li>
+        <li <?php if($route == 'planet'): ?> class="selected" <?php endif ?>><a href="<?php echo Mage::helper('core/url')->getHomeUrl(); ?>community/"><span><?php echo $this->__('community') ?></span></a></li>
     </ul>
 </div>

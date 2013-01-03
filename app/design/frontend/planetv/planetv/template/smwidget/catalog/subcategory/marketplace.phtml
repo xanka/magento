@@ -13,22 +13,62 @@ $helper = Mage::helper('planet');
     <?php $_categories = $_helper->getStoreCategories() ?>
 
     <?php $currentCategory = Mage::registry('current_category') ?>
-    <?php if (count($_categories) > 0): ?>
     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('marketplace-topcontent')->toHtml(); ?>
-    <ul class="marketplace-grid">
-        <?php foreach($_categories as $_category): ?>
-        <?php if ($_category->getName() == 'marketplace') continue; ?>
-        <li>
-            <div class="cat-item">
-                <?php $cat = Mage::getModel('catalog/category')->load($_category->getId()) ?>
-                <?php $imgUrl = $helper->resizeImg('catalog/category/'.$cat->getData('thumbnail'),189,190) ?> <!--resize image-->
-                <!--                        --><?php //var_dump($imgUrl); die; ?>
-                <div class="cat-image"><a href="<?php echo $_helper->getCategoryUrl($_category) ?>"><?php if ($cat->getData('thumbnail')): ?><img src="<?php echo $imgUrl ?>" /><?php endif ?></a></div>
-                <h3 class="cat-name"><a href="<?php echo $_helper->getCategoryUrl($_category) ?>"><?php echo $_category->getName() ?></a></h3>
-            </div>
+ 	<div id="content_menu" class"clearfix">
+    <ul class="home-list-menu">
+        <li class="item3">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/food.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Vegan_burger_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/food.html">Food</a></h3>
         </li>
-        <?php endforeach; ?>
-    </ul>
-    <?php endif; ?>
-</div>
+        <li class="item2">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/drinks.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Drink_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/drinks.html">Drinks</a></h3>
+        </li>
+        <li class="item4">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/beauty.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/beauty_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/beauty.html">Beauty</a></h3>
+        </li>
+        <li class="item5">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/confectionery.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Confectionary_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/confectionery.html">Confectionery</a></h3>
+        </li>
+        <li class="item3">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/health.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Health_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/health.html">Health</a></h3>
+        </li>
+        <li class="item4">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/shoes.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Shoes_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/shoes.html">Shoes</a></h3>
+        </li>
+        <li class="item1">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/book-store.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Books_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/book-store.html">Books</a></h3>
+        </li>
+        <li class="item3">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/home.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/home_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/home.html">Home</a></h3>
+        </li>
+        <li class="item5">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/petcare.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Petcare_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/petcare.html">Petcare</a></h3>
+        </li>
+        <li class="item2">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/clothing.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/clothing_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/clothing.html">Clothing </a></h3>
+        </li>
+        <li class="item3">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/baby-kids.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Baby_Toys_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/baby-kids.html">Baby & Kids</a></h3>
+        </li>
+        <li class="item2">            
+                <a class="overlay"><a href="http://armadillo.planet-v.co.uk/gifts.html"><img src="http://armadillo.planet-v.co.uk/media/resized/catalog/category/Giftsets_172.jpg" /></a>
+                <h3 class="title-font"><a href="http://armadillo.planet-v.co.uk/gifts.html">Gifts</a></h3>
+        </li>
+                    </ul>
+    </div>
 
+            
+            
+        </li>
+    </ul>
+	</div>

@@ -39,9 +39,9 @@
     <?php echo $this->getChildHtml('checkout_cart_empty_widget'); ?>
     <p><?php echo $this->__('You have no items in your shopping basket.') ?></p>
     <?php if ($url != ''): ?>
-    <p><?php echo $this->__('Click <a href="%s">here</a> to continue shopping.', $url) ?></p>
+    <p><?php echo $this->__('Click <a href="/marketplace.html">here</a> to continue shopping.') ?></p>
     <?php else : ?>
-    <p><?php echo $this->__('Click <a href="%s">here</a> to continue shopping.', $this->getContinueShoppingUrl()) ?></p>
+    <p><?php echo $this->__('Click <a href="/marketplace.html">here</a> to continue shopping.') ?></p>
     <?php endif; ?>
     <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
 </div>

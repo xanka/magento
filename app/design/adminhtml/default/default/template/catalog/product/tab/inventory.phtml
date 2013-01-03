@@ -37,6 +37,9 @@
 
         <legend><?php echo Mage::helper('catalog')->__('Inventory') ?></legend>
         <table cellspacing="0" class="form-list" id="table_cataloginventory">
+  
+  <!--
+  
         <tr>
             <td class="label"><label for="inventory_manage_stock"><?php echo Mage::helper('catalog')->__('Manage Stock') ?></label></td>
             <td class="value"><select id="inventory_manage_stock" name="<?php echo $this->getFieldSuffix() ?>[stock_data][manage_stock]" class="select" <?php echo $_readonly;?>>
@@ -51,10 +54,12 @@
             <?php if (!$this->isReadonly()):?><script type="text/javascript">toggleValueElements($('inventory_use_config_manage_stock'), $('inventory_use_config_manage_stock').parentNode);</script><?php endif; ?></td>
             <td class="value scope-label"><?php echo Mage::helper('adminhtml')->__('[GLOBAL]') ?></td>
         </tr>
+        
+	-->        
 
 <?php if(!$this->getProduct()->isComposite()): ?>
         <tr>
-            <td class="label"><label for="inventory_qty"><?php echo Mage::helper('catalog')->__('Qty') ?><span class="required">*</span></label></td>
+            <td class="label"><label for="inventory_qty"><?php echo Mage::helper('catalog')->__('Qty in stock') ?><span class="required">*</span></label></td>
             <td class="value">
                 <?php if (!$_readonly):?>
                 <input type="hidden" id="original_inventory_qty" name="<?php echo $this->getFieldSuffix() ?>[stock_data][original_inventory_qty]" value="<?php echo $this->getFieldValue('qty')*1 ?>"/>
@@ -63,6 +68,8 @@
             </td>
             <td class="value scope-label"><?php echo Mage::helper('adminhtml')->__('[GLOBAL]') ?></td>
         </tr>
+
+	<!--
 
         <tr>
             <td class="label"><label for="inventory_min_qty"><?php echo Mage::helper('catalog')->__('Qty for Item\'s Status to Become Out of Stock') ?></label></td>
@@ -172,6 +179,9 @@
                 <?php if (!$this->isReadonly()):?><script type="text/javascript">toggleValueElements($('inventory_use_config_qty_increments'), $('inventory_use_config_qty_increments').parentNode);</script><?php endif; ?></td>
             <td class="value scope-label"><?php echo Mage::helper('adminhtml')->__('[GLOBAL]') ?></td>
         </tr>
+        
+    -->
+        
         <tr>
             <td class="label"><label for="inventory_stock_availability"><?php echo Mage::helper('catalog')->__('Stock Availability') ?></label></td>
             <td class="value"><select id="inventory_stock_availability" name="<?php echo $this->getFieldSuffix() ?>[stock_data][is_in_stock]" class="select" <?php echo $_readonly;?>>

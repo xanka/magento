@@ -1,0 +1,11 @@
+Please read: http://magento.junowebdesign.com/EULA.txt
+
+Please find the wiki for this mode at:
+
+http://wiki.junowebdesign.com/magento-modules/barclays-epdq---pspid-type---integration
+
+For help please email support@junowebdesign.com.
+
+Installation is available from: 
+
+http://magento.junowebdesign.com/module-installation

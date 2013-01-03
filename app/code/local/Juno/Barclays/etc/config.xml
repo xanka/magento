@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ *
+ *
+ */
+-->
+<config>
+    <modules>
+        <Juno_Barclays>
+            <version>2.0.8</version>
+        </Juno_Barclays>
+    </modules>
+    <global>
+        <models>
+            <barclays>
+                <class>Juno_Barclays_Model</class>
+            </barclays>
+        </models>
+		<helpers>
+    		<barclays>
+    			<class>Juno_Barclays_Helper</class>
+    		</barclays>
+    	</helpers>
+        <blocks>
+            <barclays>
+            	<class>Juno_Barclays_Block</class>
+            </barclays>
+        </blocks>
+    </global>
+    <frontend>
+		 <routers>
+            <barclays>
+                <use>standard</use>
+                <args>
+                    <module>Juno_Barclays</module>
+                    <frontName>barclays</frontName>
+                </args>
+            </barclays>
+        </routers>
+        <layout>
+            <updates>
+                <barclays>
+                    <file>barclays.xml</file>
+                </barclays>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+        <payment>
+            <barclays>
+                <model>barclays/barclays</model>
+				<title>Barclaycard Payment</title>
+				<debug>0</debug>
+				<order_status>1</order_status>
+				<status>0</status>
+            </barclays>
+        </payment>
+    </default>
+</config>

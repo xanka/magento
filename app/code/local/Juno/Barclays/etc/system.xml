@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ *
+ *
+ */
+-->
+<config>
+   <sections>
+        <payment>
+            <groups>
+                <barclays translate="label" module="barclays">
+                    <label>Barclays Payment Integration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>600</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[
+                        <div class="box">
+                            <p>Thanks for using the Barclays Payment integration by Juno Media, for support please email <a href="mailto:support@junowebdesign.com">support@junowebdesign.com</a>.</p>
+                        </div>]]>
+					</comment>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <licence translate="label">
+                            <label>Licence Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Obtained from Juno Media.]]></comment>
+                        </licence>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[This is what will be shown on the checkout page.]]></comment>
+                        </title>
+						<status translate="label">
+                            <label>Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>barclays/source_mode</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this setting to switch between test and live modes.]]></comment>
+                        </status>
+                        <pspid translate="label">
+                            <label>PSPID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment><![CDATA[Your Barclays PSPID.]]></comment>
+                        </pspid>
+						<passphrase translate="label">
+                            <label>Passphrase</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment><![CDATA[The passphrase is defined in the Merchant's Technical information, under the tab 'Data and Origin Verification', section 'Checks for e-Commerce'.]]></comment>
+                        </passphrase>
+                        <backgroundcolour translate="label">
+                            <label>Background Colour</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </backgroundcolour>
+                        <txtcolour translate="label">
+                            <label>Text Colour</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </txtcolour>
+                        <tblbackgroundcolour translate="label">
+                            <label>Table Background Colour</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tblbackgroundcolour>
+                        <tbltxtcolour translate="label">
+                            <label>Table Text Colour</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tbltxtcolour>
+                        <buttonbackgroundcolour translate="label">
+                            <label>Button Background Colour</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </buttonbackgroundcolour>
+                        <buttontxtcolour translate="label">
+                            <label>Button Text Colour</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </buttontxtcolour>
+                        <logo translate="label">
+                            <label>Logo Image Path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[The FULL url to your logo used on the barclays page. This has to be https:// to work!]]></comment>
+                        </logo>
+                        <fontface translate="label">
+                            <label>Font Face</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fontface>
+                        <sort_order translate="label">
+                            <label>Sort order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                        <allowspecific translate="label">
+                            <label>Payment from applicable countries</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <sort_order>210</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Payment from Specific countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>220</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>  
+                        <debug translate="label">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </debug>
+                    </fields>
+                </barclays>
+            </groups>
+        </payment>
+    </sections>
+</config>

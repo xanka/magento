@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<wordpress>
+			<children>
+				<extend>
+					<children>
+						<customer_sync translate="label" module="wordpress">
+							<title>Customer Synchronisation</title>
+							<sort_order>35</sort_order>
+							<action>adminhtml/system_config/edit/section/wordpress_extend</action>
+						</customer_sync>
+					</children>
+				</extend>
+			</children>
+		</wordpress>
+	</menu>
+</config>

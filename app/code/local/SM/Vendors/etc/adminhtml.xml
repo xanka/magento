@@ -119,7 +119,7 @@
                         <sort_order>80</sort_order>
                         <children>
                             <smvendors module="smvendors">
-                                <title>Vendor Reports</title>
+                                <title>Merchant Reports</title>
                                 <sort_order>100</sort_order>
                                 <children>
                                     <vendororders module="smvendors">
@@ -195,7 +195,7 @@
             <sort_order>80</sort_order>
             <children>
                 <smvendors module="smvendors">
-                    <title>Vendor Reports</title>
+                    <title>Merchant Reports</title>
                     <sort_order>100</sort_order>
                     <children>
                         <vendororders module="smvendors">
