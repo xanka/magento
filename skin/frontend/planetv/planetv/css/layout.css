@@ -1,0 +1,7 @@
+/********************DEFAULT LAYOUT************************/
+
+/***** Begin Header *****/
+/***** Block Search *****/
+#planet_search ul li{
+    display: inline;
+}

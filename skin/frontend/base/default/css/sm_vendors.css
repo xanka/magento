@@ -1,0 +1,19 @@
+/* 
+    Document   : sm_vendors.css
+    Created on : Jul 16, 2012, 10:47:11 AM
+    Author     : TrungTQ
+    Description:
+        Frontend styles for multivendor.
+*/
+
+.vender_brand  {display:block;text-align:left; width: 860px; margin: 30px auto;}
+.vender_brand li {display:inline; font-family: JournalRegular; padding:0 7px; font-size: 30px;}
+.vender_brand li.view-all {border-left:solid 1px #ddd;margin-left:10px;}
+.vender_brand li a:hover {color:#099;text-decoration:underline;}
+
+.vendor-group-container .vendor-title {position: relative; left: -49px;}
+.vendor-char-group ul {float:left}
+.vendor-char-group ul li.vendor-groups-col {width:210px;padding-right:20px;padding-bottom:25px;float:left}
+.vendor-char-group ul  ul {width:100%;float:none;}
+.vendor-char-group ul  ul  li {font-size:12px; padding:2px 0 2px 12px;}
+.vendor-char-group .vendor-title h6 {text-transform:uppercase; margin: 0; padding-bottom: 5px;}

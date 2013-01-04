@@ -29,13 +29,13 @@
 			<?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
 				<thead>
 					<tr>
-						<th rowspan="<?php echo $mergedCells; ?>" colspan="2">&nbsp;</th>
+						<th rowspan="<?php echo $mergedCells; ?>" colspan="2">Company Name</th>
 						
-						<th>&nbsp;</th>
+						<th>Image</th>
 						<th rowspan="<?php echo $mergedCells; ?>" class="a-left"><?php echo $this->__('Product') ?></th>
 						<th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Qty.') ?></th>
 						<th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Price') ?></th>
-						<th class="a-center" colspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+						<th class="a-center" colspan="<?php echo $mergedCells; ?>">Total</th>
 					</tr>
 					<?php if ($this->helper('tax')->displayCartBothPrices()): ?>
 					<tr>
